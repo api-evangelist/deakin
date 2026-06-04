@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/deakin/main/json-structure/deakin-project-structure.json",
+  "name": "Project",
+  "type": "object",
+  "description": "JSON Structure for the figshare API Project object (platform underpinning Deakin Research Online).",
+  "properties": {
+    "url": {
+      "type": "string",
+      "description": "Api endpoint",
+      "required": true
+    },
+    "id": {
+      "type": "int64",
+      "description": "Project id",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "description": "Project title",
+      "required": true
+    },
+    "created_date": {
+      "type": "string",
+      "description": "Date when project was created",
+      "required": true
+    },
+    "modified_date": {
+      "type": "string",
+      "description": "Date when project was last modified",
+      "required": true
+    }
+  }
+}

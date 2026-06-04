@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/deakin/main/json-schema/deakin-collection-schema.json",
+  "title": "figshare Collection",
+  "description": "JSON Schema for the figshare API Collection object, the platform underpinning Deakin Research Online (DRO).",
+  "type": "object",
+  "required": [
+    "doi",
+    "handle",
+    "id",
+    "timeline",
+    "title",
+    "url"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Collection id",
+      "example": 123
+    },
+    "title": {
+      "type": "string",
+      "description": "Collection title",
+      "example": "Sample collection"
+    },
+    "doi": {
+      "type": "string",
+      "description": "Collection DOI",
+      "example": "10.6084/m9.figshare.123"
+    },
+    "handle": {
+      "type": "string",
+      "description": "Collection Handle",
+      "example": "111184/figshare.1234"
+    },
+    "url": {
+      "type": "string",
+      "description": "Api endpoint",
+      "example": "https://api.figshare.com/v2/collections/123"
+    },
+    "timeline": {
+      "type": "object",
+      "description": "",
+      "properties": {}
+    }
+  },
+  "additionalProperties": true
+}

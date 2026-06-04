@@ -1,0 +1,65 @@
+{
+  "operation": "POST /articles/search",
+  "description": "Search published figshare articles. Useful for harvesting Deakin Research Online (DRO) outputs by querying 'Deakin University'.",
+  "request": {
+    "search_for": "Deakin University",
+    "page_size": 2
+  },
+  "response": [
+    {
+      "project_id": null,
+      "id": 32565729,
+      "title": "Analytic Methods for Understanding the Temporal Patterning of Dietary and 24-H Movement Behaviors: A Scoping Review",
+      "doi": "",
+      "handle": "10779/cqu.32565729.v1",
+      "url": "https://api.figshare.com/v2/articles/32565729",
+      "published_date": "2026-06-03T06:43:19Z",
+      "thumb": "https://s3-eu-west-1.amazonaws.com/ppreviews-cqu-0121624439/65240226/thumb.png",
+      "defined_type": 6,
+      "defined_type_name": "journal contribution",
+      "group_id": 30539,
+      "url_private_api": "https://api.figshare.com/v2/account/articles/32565729",
+      "url_public_api": "https://api.figshare.com/v2/articles/32565729",
+      "url_private_html": "https://figshare.com/account/articles/32565729",
+      "url_public_html": "https://acquire.cqu.edu.au/articles/journal_contribution/Analytic_Methods_for_Understanding_the_Temporal_Patterning_of_Dietary_and_24-H_Movement_Behaviors_A_Scoping_Review/32565729",
+      "timeline": {
+        "posted": "2026-06-03T06:43:19",
+        "firstOnline": "2024-07-18",
+        "publisherPublication": "2024-08-01T00:00:00",
+        "publisherAcceptance": "2024-07-15T00:00:00"
+      },
+      "resource_title": "",
+      "resource_doi": "",
+      "created_date": "2026-06-03T06:43:19Z",
+      "modified_date": "2026-06-03T06:43:20Z"
+    },
+    {
+      "project_id": null,
+      "id": 32527002,
+      "title": "Electrochemical Sensor and Use Thereof",
+      "doi": "10.26187/deakin.32527002",
+      "handle": "",
+      "url": "https://api.figshare.com/v2/articles/32527002",
+      "published_date": "2026-06-01T23:28:28Z",
+      "thumb": "https://ndownloader.figshare.com/files/65133606/preview/65133606/thumb.png",
+      "defined_type": 19,
+      "defined_type_name": "standard",
+      "group_id": 45153,
+      "url_private_api": "https://api.figshare.com/v2/account/articles/32527002",
+      "url_public_api": "https://api.figshare.com/v2/articles/32527002",
+      "url_private_html": "https://figshare.com/account/articles/32527002",
+      "url_public_html": "https://dro.deakin.edu.au/articles/standard/Electrochemical_Sensor_and_Use_Thereof/32527002",
+      "timeline": {
+        "posted": "2026-06-01T23:28:28",
+        "submission": "2026-06-01T01:03:04",
+        "revision": "2026-06-01T23:28:41",
+        "firstOnline": "2026-05-28",
+        "publisherPublication": "2026-05-28T00:00:00"
+      },
+      "resource_title": "Electrochemical Sensor and Use Thereof",
+      "resource_doi": "https://patentscope.wipo.int/search/en/detail.jsf?docId=WO2026107555",
+      "created_date": "2026-06-01T23:28:28Z",
+      "modified_date": "2026-06-01T23:28:42Z"
+    }
+  ]
+}

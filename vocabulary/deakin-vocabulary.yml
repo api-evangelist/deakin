@@ -1,0 +1,57 @@
+vocabulary:
+  name: Deakin Research Online (figshare) Vocabulary
+  description: >-
+    Controlled vocabulary for the research-output objects exposed by the figshare
+    API v2, the platform that powers Deakin Research Online (DRO). Terms are drawn
+    from the real OpenAPI 3.0.3 description at https://api.figshare.com/v2/swagger.json.
+  version: '1.0.0'
+  source: https://api.figshare.com/v2/swagger.json
+  terms:
+    - term: Article
+      definition: >-
+        A single research output (dataset, thesis, paper, media, software, etc.)
+        deposited in the repository, identified by an integer id and a DOI.
+      tags: [object, research-output, core]
+    - term: Collection
+      definition: >-
+        A curated grouping of articles published together under a single DOI and handle.
+      tags: [object, grouping]
+    - term: Project
+      definition: >-
+        A workspace that organizes articles and collaborators around a research effort.
+      tags: [object, workspace]
+    - term: Author
+      definition: >-
+        A person credited on an article, optionally linked to an ORCID identifier.
+      tags: [object, person]
+    - term: doi
+      definition: Digital Object Identifier minted for an article or collection.
+      tags: [field, identifier, persistent]
+    - term: handle
+      definition: Handle System persistent identifier for an item.
+      tags: [field, identifier, persistent]
+    - term: orcid_id
+      definition: ORCID researcher identifier associated with an author.
+      tags: [field, identifier, person]
+    - term: defined_type_name
+      definition: >-
+        Human-readable item type such as dataset, thesis, journal contribution,
+        media, software or figure.
+      tags: [field, classification]
+    - term: timeline
+      definition: >-
+        Object capturing lifecycle dates for an item (submitted, posted, revised, published).
+      tags: [field, temporal]
+    - term: license
+      definition: License attached to an item (e.g. CC BY 4.0) with a value, name and url.
+      tags: [field, rights]
+    - term: categories
+      definition: >-
+        Subject classification taxonomy entries assigned to an item, each with an id,
+        title, parent_id and taxonomy path.
+      tags: [field, classification, taxonomy]
+    - term: OAI-PMH
+      definition: >-
+        Open Archives Initiative Protocol for Metadata Harvesting, exposed by figshare
+        at /v2/oai for bulk harvesting of DRO metadata.
+      tags: [protocol, harvesting, metadata]

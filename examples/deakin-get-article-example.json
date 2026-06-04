@@ -1,0 +1,368 @@
+{
+  "authors": [
+    {
+      "id": 24085542,
+      "full_name": "Mahendra Naidoo",
+      "first_name": "Mahendra",
+      "last_name": "Naidoo",
+      "is_active": false,
+      "url_name": "_",
+      "orcid_id": ""
+    }
+  ],
+  "custom_fields": [
+    {
+      "name": "Principal supervisor",
+      "value": "John Zalcberg",
+      "settings": {
+        "validations": {
+          "min_length": 2,
+          "max_length": 250
+        },
+        "default_value": "Principal supervisor"
+      },
+      "field_type": "text",
+      "order": null,
+      "is_mandatory": false
+    },
+    {
+      "name": "Additional supervisor 1",
+      "value": "Clare Scott",
+      "settings": {
+        "validations": {
+          "min_length": 2,
+          "max_length": 250
+        },
+        "placeholder": "Additional supervisor 1"
+      },
+      "field_type": "text",
+      "order": null,
+      "is_mandatory": false
+    },
+    {
+      "name": "Additional supervisor 2",
+      "value": "Orla McNally",
+      "settings": {
+        "validations": {
+          "min_length": 2,
+          "max_length": 250
+        },
+        "placeholder": "Additional supervisor 2"
+      },
+      "field_type": "text",
+      "order": null,
+      "is_mandatory": false
+    },
+    {
+      "name": "Additional supervisor 3",
+      "value": "",
+      "settings": {
+        "validations": {
+          "min_length": 2,
+          "max_length": 250
+        },
+        "placeholder": "Additional supervisor 3"
+      },
+      "field_type": "text",
+      "order": null,
+      "is_mandatory": false
+    },
+    {
+      "name": "Additional supervisor 4",
+      "value": "",
+      "settings": {
+        "validations": {
+          "min_length": 2,
+          "max_length": 250
+        },
+        "placeholder": "Additional supervisor 4"
+      },
+      "field_type": "text",
+      "order": null,
+      "is_mandatory": false
+    },
+    {
+      "name": "Year of Award",
+      "value": "2026",
+      "settings": {
+        "validations": {
+          "min_length": 2,
+          "max_length": 250
+        },
+        "placeholder": "Year of Award"
+      },
+      "field_type": "text",
+      "order": null,
+      "is_mandatory": false
+    },
+    {
+      "name": "Department, School or Centre",
+      "value": "Epidemiology and Preventive Medicine",
+      "settings": {
+        "validations": {
+          "min_length": 2,
+          "max_length": 250
+        },
+        "placeholder": "Department, School or Centre"
+      },
+      "field_type": "text",
+      "order": null,
+      "is_mandatory": false
+    },
+    {
+      "name": "Additional Institution or Organisation",
+      "value": "Monash University Public Health and Preventive Medicine",
+      "settings": {
+        "validations": {
+          "min_length": 2,
+          "max_length": 250
+        },
+        "placeholder": "Additional Institution or Organisation"
+      },
+      "field_type": "text",
+      "order": null,
+      "is_mandatory": false
+    },
+    {
+      "name": "Campus location",
+      "value": "Australia",
+      "settings": {
+        "validations": {
+          "min_length": 2,
+          "max_length": 250
+        },
+        "placeholder": "Campus location"
+      },
+      "field_type": "text",
+      "order": null,
+      "is_mandatory": false
+    },
+    {
+      "name": "Course",
+      "value": "Doctor of Philosophy",
+      "settings": {
+        "validations": {
+          "min_length": 2,
+          "max_length": 250
+        },
+        "placeholder": "Course"
+      },
+      "field_type": "text",
+      "order": null,
+      "is_mandatory": false
+    },
+    {
+      "name": "Degree Type",
+      "value": "DOCTORATE",
+      "settings": {
+        "validations": {
+          "min_length": 2,
+          "max_length": 250
+        },
+        "placeholder": "Degree type"
+      },
+      "field_type": "text",
+      "order": null,
+      "is_mandatory": false
+    },
+    {
+      "name": "Faculty",
+      "value": "Faculty of Medicine, Nursing and Health Sciences",
+      "settings": {
+        "validations": {
+          "min_length": 1,
+          "max_length": 250
+        },
+        "default_value": "Faculty of Medicine, Nursing and Health Sciences"
+      },
+      "field_type": "text",
+      "order": null,
+      "is_mandatory": false
+    },
+    {
+      "name": "File Name",
+      "value": "",
+      "settings": {
+        "validations": {
+          "min_length": 1,
+          "max_length": 250
+        },
+        "placeholder": "File Name"
+      },
+      "field_type": "text",
+      "order": null,
+      "is_mandatory": false
+    },
+    {
+      "name": "Author converted thesis to Open Access",
+      "value": "",
+      "settings": {},
+      "field_type": "date",
+      "order": null,
+      "is_mandatory": false
+    },
+    {
+      "name": "Rights Statement",
+      "value": "The author retains copyright of this thesis. It must only be used for personal non-commercial research, education and study. It must not be used for any other purposes and may not be transmitted or shared with others without prior permission.  For further terms use the In Copyright link under the License field.",
+      "settings": {
+        "validations": {
+          "min_length": 10,
+          "max_length": 400
+        },
+        "default_value": "The author retains copyright of this thesis. It must only be used for personal non-commercial research, education and study. It must not be used for any other purposes and may not be transmitted or shared with others without prior permission.  For further terms use the In Copyright link under the License field."
+      },
+      "field_type": "textarea",
+      "order": null,
+      "is_mandatory": false
+    },
+    {
+      "name": "MMS ID",
+      "value": "",
+      "settings": {
+        "validations": {
+          "min_length": 1,
+          "max_length": 250
+        },
+        "placeholder": "MMS ID"
+      },
+      "field_type": "text",
+      "order": null,
+      "is_mandatory": false
+    }
+  ],
+  "figshare_url": "https://bridges.monash.edu/articles/thesis/Real-World_Outcomes_for_Women_with_Ovarian_Cancer_Measuring_Quality_of_Care_in_Australia_Using_a_Clinical_Quality_Registry/32526309",
+  "download_disabled": false,
+  "description": "Ovarian cancer is Australia\u2019s deadliest gynaecological cancer, and survival depends heavily on the quality of treatment received. This PhD utilised the National Gynae-Oncology Registry (NGOR) to provide the first comprehensive assessment of patterns of care standards nationwide. The research confirmed that adhering to best-practice guidelines -  specifically high-quality surgery, standard chemotherapy, and genetic testing significantly improves survival. However, the studies identified critical disparities: older women often receive less intensive treatment, and the uptake of new life-prolonging targeted therapies is inconsistent. This work provides evidence needed to improve standards and ensure equitable, life-saving care for all Australian women.",
+  "funding": null,
+  "funding_list": [],
+  "version": 2,
+  "status": "public",
+  "size": 10126824,
+  "created_date": "2026-06-04T03:08:38Z",
+  "modified_date": "2026-06-04T03:08:38Z",
+  "is_public": true,
+  "is_confidential": false,
+  "is_metadata_record": false,
+  "confidential_reason": "",
+  "metadata_reason": "",
+  "license": {
+    "value": 43,
+    "name": "In Copyright",
+    "url": "http://rightsstatements.org/vocab/InC/1.0/"
+  },
+  "tags": [
+    "ovarian cancer",
+    "clinical quality registry",
+    "health services research",
+    "quality of care",
+    "real world outcomes",
+    "BRCA testing",
+    "clinical quality indicators",
+    "health inequities",
+    "PARP inhibitors",
+    "Geriatric oncology",
+    "precision medicine",
+    "rare ovarian cancers"
+  ],
+  "keywords": [
+    "ovarian cancer",
+    "clinical quality registry",
+    "health services research",
+    "quality of care",
+    "real world outcomes",
+    "BRCA testing",
+    "clinical quality indicators",
+    "health inequities",
+    "PARP inhibitors",
+    "Geriatric oncology",
+    "precision medicine",
+    "rare ovarian cancers"
+  ],
+  "categories": [
+    {
+      "id": 27205,
+      "title": "Public health not elsewhere classified",
+      "parent_id": 27184,
+      "path": "/27001/27184/27205",
+      "source_id": "420699",
+      "taxonomy_id": 100
+    },
+    {
+      "id": 27142,
+      "title": "Health services and systems not elsewhere classified",
+      "parent_id": 27076,
+      "path": "/27001/27076/27142",
+      "source_id": "420399",
+      "taxonomy_id": 100
+    },
+    {
+      "id": 27079,
+      "title": "Aged health care",
+      "parent_id": 27076,
+      "path": "/27001/27076/27079",
+      "source_id": "420301",
+      "taxonomy_id": 100
+    },
+    {
+      "id": 24811,
+      "title": "Oncology and carcinogenesis not elsewhere classified",
+      "parent_id": 24775,
+      "path": "/24457/24775/24811",
+      "source_id": "321199",
+      "taxonomy_id": 100
+    },
+    {
+      "id": 24781,
+      "title": "Cancer diagnosis",
+      "parent_id": 24775,
+      "path": "/24457/24775/24781",
+      "source_id": "321102",
+      "taxonomy_id": 100
+    },
+    {
+      "id": 24787,
+      "title": "Cancer therapy (excl. chemotherapy and radiation therapy)",
+      "parent_id": 24775,
+      "path": "/24457/24775/24787",
+      "source_id": "321104",
+      "taxonomy_id": 100
+    },
+    {
+      "id": 24319,
+      "title": "Genetics not elsewhere classified",
+      "parent_id": 24283,
+      "path": "/24130/24283/24319",
+      "source_id": "310599",
+      "taxonomy_id": 100
+    }
+  ],
+  "references": [],
+  "has_linked_file": false,
+  "citation": "Naidoo, Mahendra (2026). Real-World Outcomes for Women with Ovarian Cancer: Measuring Quality of Care in Australia Using a Clinical Quality Registry. Monash University. Thesis. https://doi.org/10.26180/32526309.v2",
+  "related_materials": [],
+  "is_embargoed": true,
+  "embargo_date": "2027-05-31",
+  "embargo_type": "file",
+  "embargo_title": "File(s) under embargo",
+  "embargo_reason": "",
+  "embargo_options": [],
+  "id": 32526309,
+  "title": "Real-World Outcomes for Women with Ovarian Cancer: Measuring Quality of Care in Australia Using a Clinical Quality Registry",
+  "doi": "10.26180/32526309.v2",
+  "handle": "",
+  "url": "https://api.figshare.com/v2/articles/32526309",
+  "published_date": "2026-06-04T03:08:38Z",
+  "thumb": "https://ndownloader.figshare.com/files/65271420/preview/65271420/thumb.png",
+  "defined_type": 8,
+  "defined_type_name": "thesis",
+  "group_id": 7731,
+  "url_private_api": "https://api.figshare.com/v2/account/articles/32526309",
+  "url_public_api": "https://api.figshare.com/v2/articles/32526309",
+  "url_private_html": "https://figshare.com/account/articles/32526309",
+  "url_public_html": "https://bridges.monash.edu/articles/thesis/Real-World_Outcomes_for_Women_with_Ovarian_Cancer_Measuring_Quality_of_Care_in_Australia_Using_a_Clinical_Quality_Registry/32526309",
+  "timeline": {
+    "posted": "2026-06-04T03:08:38"
+  },
+  "resource_title": null,
+  "resource_doi": null
+}

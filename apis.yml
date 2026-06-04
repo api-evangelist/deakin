@@ -55,6 +55,20 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.figshare.com/
+      - type: OpenAPI
+        url: openapi/deakin-figshare-api.yaml
+      - type: JSONSchema
+        url: json-schema/deakin-article-schema.json
+      - type: JSONStructure
+        url: json-structure/deakin-article-structure.json
+      - type: Examples
+        url: examples/deakin-get-article-example.json
+      - type: Rules
+        url: rules/deakin-rules.yml
+      - type: Vocabulary
+        url: vocabulary/deakin-vocabulary.yml
+      - type: JSONLD
+        url: json-ld/deakin-context.jsonld
   - aid: deakin:data-portal
     name: Deakin Data Portal
     description: >-

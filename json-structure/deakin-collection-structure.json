@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/deakin/main/json-structure/deakin-collection-structure.json",
+  "name": "Collection",
+  "type": "object",
+  "description": "JSON Structure for the figshare API Collection object (platform underpinning Deakin Research Online).",
+  "properties": {
+    "id": {
+      "type": "int64",
+      "description": "Collection id",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "description": "Collection title",
+      "required": true
+    },
+    "doi": {
+      "type": "string",
+      "description": "Collection DOI",
+      "required": true
+    },
+    "handle": {
+      "type": "string",
+      "description": "Collection Handle",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "description": "Api endpoint",
+      "required": true
+    },
+    "timeline": {
+      "type": "object",
+      "required": true
+    }
+  }
+}

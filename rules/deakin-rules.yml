@@ -1,0 +1,60 @@
+extends: []
+formats:
+  - oas3
+documentationUrl: https://docs.figshare.com/
+description: >-
+  Spectral ruleset encoding observed patterns in the figshare API v2 (the
+  platform underpinning Deakin Research Online). Derived from the real OpenAPI
+  3.0.3 description published at https://api.figshare.com/v2/swagger.json.
+rules:
+  deakin-info-contact:
+    description: API info should declare a title and version.
+    severity: warn
+    given: $.info
+    then:
+      - field: title
+        function: truthy
+      - field: version
+        function: truthy
+
+  deakin-servers-figshare-v2:
+    description: Servers should point at the figshare API v2 base URL.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://api\\.figshare\\.com/v2"
+
+  deakin-operation-summary:
+    description: Every operation should have a summary describing the action.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: summary
+      function: truthy
+
+  deakin-bearer-oauth-security:
+    description: figshare uses OAuth2 bearer tokens; a bearer security scheme should exist.
+    severity: info
+    given: $.components.securitySchemes
+    then:
+      function: defined
+
+  deakin-article-identifier:
+    description: Article objects should expose an integer id and a DOI string.
+    severity: warn
+    given: $.components.schemas.Article.properties
+    then:
+      - field: id
+        function: truthy
+      - field: doi
+        function: truthy
+
+  deakin-pagination-params:
+    description: Listing endpoints should support page and page_size query parameters.
+    severity: info
+    given: $.paths[*].get.parameters[?(@.name == 'page_size')]
+    then:
+      field: in
+      function: truthy

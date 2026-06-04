@@ -1,0 +1,49 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "deakin": "https://www.deakin.edu.au/ns#",
+    "figshare": "https://api.figshare.com/v2/ns#",
+
+    "CollegeOrUniversity": "schema:CollegeOrUniversity",
+    "name": "schema:name",
+    "url": "schema:url",
+    "description": "schema:description",
+    "sameAs": {"@id": "schema:sameAs", "@type": "@id"},
+
+    "Article": "figshare:Article",
+    "Collection": "figshare:Collection",
+    "Project": "figshare:Project",
+    "Author": "figshare:Author",
+
+    "id": "schema:identifier",
+    "title": "schema:name",
+    "doi": {"@id": "schema:identifier", "@type": "schema:PropertyValue"},
+    "handle": {"@id": "schema:identifier", "@type": "schema:PropertyValue"},
+    "published_date": {"@id": "schema:datePublished", "@type": "schema:Date"},
+    "created_date": {"@id": "schema:dateCreated", "@type": "schema:Date"},
+    "modified_date": {"@id": "schema:dateModified", "@type": "schema:Date"},
+    "defined_type_name": "schema:additionalType",
+    "license": "schema:license",
+    "tags": "schema:keywords",
+    "keywords": "schema:keywords",
+    "categories": "schema:about",
+    "authors": {"@id": "schema:author", "@type": "@id"},
+    "full_name": "schema:name",
+    "first_name": "schema:givenName",
+    "last_name": "schema:familyName",
+    "orcid_id": {"@id": "schema:identifier", "@type": "@id"},
+    "size": "schema:contentSize",
+    "files": "schema:associatedMedia"
+  },
+  "@type": "CollegeOrUniversity",
+  "@id": "https://www.deakin.edu.au/",
+  "name": "Deakin University",
+  "url": "https://www.deakin.edu.au/",
+  "description": "Public research university in Victoria, Australia. Research outputs are published via Deakin Research Online (DRO), hosted on the figshare platform.",
+  "sameAs": [
+    "https://github.com/Deakin",
+    "https://au.linkedin.com/school/deakin-university/",
+    "https://dro.deakin.edu.au/"
+  ]
+}

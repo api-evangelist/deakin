@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/deakin/main/json-structure/deakin-article-structure.json",
+  "name": "Article",
+  "type": "object",
+  "description": "JSON Structure for the figshare API Article object (platform underpinning Deakin Research Online).",
+  "properties": {
+    "id": {
+      "type": "int64",
+      "description": "Unique identifier for article",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "description": "Title of article",
+      "required": true
+    },
+    "doi": {
+      "type": "string",
+      "description": "DOI",
+      "required": true
+    },
+    "handle": {
+      "type": "string",
+      "description": "Handle",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "description": "Api endpoint for article",
+      "required": true
+    },
+    "url_public_html": {
+      "type": "string",
+      "description": "Public site endpoint for article",
+      "required": true
+    },
+    "url_public_api": {
+      "type": "string",
+      "description": "Public Api endpoint for article",
+      "required": true
+    },
+    "url_private_html": {
+      "type": "string",
+      "description": "Private site endpoint for article",
+      "required": true
+    },
+    "url_private_api": {
+      "type": "string",
+      "description": "Private Api endpoint for article",
+      "required": true
+    },
+    "timeline": {
+      "type": "object",
+      "required": true
+    },
+    "thumb": {
+      "type": "string",
+      "description": "Thumbnail image",
+      "required": true
+    },
+    "defined_type": {
+      "type": "int64",
+      "description": "Type of article identifier",
+      "required": true
+    },
+    "defined_type_name": {
+      "type": "string",
+      "description": "Name of the article type identifier",
+      "required": true
+    },
+    "resource_doi": {
+      "type": "string",
+      "description": "Deprecated by related materials. Not applicable to regular users. In a publisher case, this is the publisher article DOI.",
+      "required": true
+    },
+    "resource_title": {
+      "type": "string",
+      "description": "Deprecated by related materials. Not applicable to regular users. In a publisher case, this is the publisher article title.",
+      "required": true
+    },
+    "created_date": {
+      "type": "string",
+      "description": "Date when article was created",
+      "required": true
+    }
+  }
+}

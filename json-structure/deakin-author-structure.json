@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/deakin/main/json-structure/deakin-author-structure.json",
+  "name": "Author",
+  "type": "object",
+  "description": "JSON Structure for the figshare API Author object (platform underpinning Deakin Research Online).",
+  "properties": {
+    "id": {
+      "type": "int64",
+      "description": "Author id",
+      "required": true
+    },
+    "full_name": {
+      "type": "string",
+      "description": "Author full name",
+      "required": true
+    },
+    "first_name": {
+      "type": "string",
+      "description": "Author first name",
+      "required": true
+    },
+    "last_name": {
+      "type": "string",
+      "description": "Author last name",
+      "required": true
+    },
+    "is_active": {
+      "type": "boolean",
+      "description": "True if author has published items",
+      "required": true
+    },
+    "url_name": {
+      "type": "string",
+      "description": "Author url name",
+      "required": true
+    },
+    "orcid_id": {
+      "type": "string",
+      "description": "Author Orcid",
+      "required": true
+    }
+  }
+}
