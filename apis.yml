@@ -1,0 +1,102 @@
+---
+aid: deakin
+name: Deakin University
+description: >-
+  Deakin University is a public research university in Victoria, Australia, with
+  campuses in Geelong, Warrnambool and Melbourne, ranked #197 in the QS World
+  University Rankings 2025. Like most universities, Deakin operates an
+  integration-heavy IT estate (its SSO is a Shibboleth/SAML2 identity provider)
+  but does not publish a public, self-service developer API portal. Its
+  confirmed public, machine-readable footprint is concentrated in research
+  infrastructure: the Deakin Research Online (DRO) repository runs on figshare
+  (which exposes a public OAI-PMH and REST API), a public Data Portal for sharing
+  research datasets, and an active GitHub organization. Most catalogued surfaces
+  below are third-party-hosted or gated rather than first-party, documented APIs.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/deakin/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Research
+  - Open Data
+  - Australia
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: deakin:dro-oai
+    name: Deakin Research Online (DRO) OAI-PMH
+    description: >-
+      Deakin Research Online is the university's research repository, now hosted
+      on the figshare platform. It exposes research-output metadata for harvesting
+      via the OAI-PMH protocol. The DRO host issues a bot-challenge response to
+      automated clients; the underlying figshare OAI-PMH service is publicly
+      reachable.
+    humanURL: https://dro.deakin.edu.au/
+    baseURL: https://api.figshare.com/v2/oai
+    tags: [ Research, Repository, OAI-PMH, Metadata, figshare ]
+    properties:
+      - type: Documentation
+        url: https://info.figshare.com/user-guide/how-to-use-figshares-oai-pmh-service/
+  - aid: deakin:figshare-api
+    name: figshare REST API (DRO platform)
+    description: >-
+      Deakin Research Online runs on figshare, whose public REST API (v2) provides
+      programmatic access to articles, collections and metadata across hosted
+      institutional repositories. This is a third-party platform API underpinning
+      DRO rather than a Deakin-branded API.
+    humanURL: https://docs.figshare.com/
+    baseURL: https://api.figshare.com/v2
+    tags: [ Research, Repository, REST, figshare ]
+    properties:
+      - type: Documentation
+        url: https://docs.figshare.com/
+  - aid: deakin:data-portal
+    name: Deakin Data Portal
+    description: >-
+      A public portal for Deakin researchers and research groups to share data and
+      collected materials with the Australian research community. It is a
+      web-delivered data-sharing platform; no documented public API was confirmed,
+      so it is catalogued as a data property rather than a documented API surface.
+    humanURL: https://dataportal.deakin.edu.au/
+    tags: [ Open Data, Research, Data Portal ]
+    properties:
+      - type: Documentation
+        url: https://dataportal.deakin.edu.au/
+  - aid: deakin:sso
+    name: Deakin Single Sign-On (Shibboleth/SAML2 IdP)
+    description: >-
+      Deakin operates a Shibboleth/SAML2 identity provider for single sign-on
+      across university systems. The IdP metadata endpoint is publicly reachable,
+      but this is federated SSO infrastructure for relying parties, not a
+      documented public OAuth/OpenID developer API.
+    humanURL: https://signon.deakin.edu.au/
+    baseURL: https://signon.deakin.edu.au/idp/shibboleth
+    tags: [ Identity, SSO, SAML, Shibboleth, Authentication ]
+    properties:
+      - type: Documentation
+        url: https://help.deakin.edu.au/login_locate_sso.do
+common:
+  - type: Website
+    url: https://www.deakin.edu.au/
+  - type: GitHub
+    url: https://github.com/Deakin
+  - type: LinkedIn
+    url: https://au.linkedin.com/school/deakin-university/
+  - type: Authentication
+    url: https://signon.deakin.edu.au/
+  - type: Plans
+    url: plans/deakin-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/deakin-rate-limits.yml
+  - type: FinOps
+    url: finops/deakin-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

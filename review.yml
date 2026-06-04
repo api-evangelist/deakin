@@ -1,0 +1,44 @@
+---
+name: Deakin University
+description: Deakin University public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/deakin/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 2
+    summary: >-
+      No first-party, self-service developer API portal was found for Deakin
+      University. The verified public footprint is research-centric: an active
+      GitHub org (github.com/Deakin, 22 public repos including ReDBox/Mint research
+      data tooling and Shibboleth plugins), the DRO research repository hosted on
+      figshare (figshare exposes public OAI-PMH and REST APIs), a public research
+      Data Portal, and a publicly reachable Shibboleth/SAML2 SSO IdP. No documented
+      endpoints, signup, or rate limits were published by Deakin itself; the
+      machine-readable APIs are third-party (figshare). Ratings and endpoint
+      statuses below reflect only what was probed live, with no fabricated endpoints.
+    endpoints:
+      - url: https://github.com/Deakin
+        status: 200
+        note: Confirmed official GitHub org "Deakin University", 22 public repos.
+      - url: https://api.figshare.com/v2/oai?verb=Identify
+        status: 200
+        note: figshare OAI-PMH live; platform underpinning DRO (response is generic figshare).
+      - url: https://dro.deakin.edu.au/
+        status: 202
+        note: DRO repository host returns a bot-challenge (202) to automated clients; figshare-hosted.
+      - url: https://dataportal.deakin.edu.au/
+        status: 200
+        note: Public research Data Portal; web-delivered, no documented API confirmed.
+      - url: https://docs.figshare.com/
+        status: 200
+        note: figshare REST API v2 docs (third-party platform powering DRO).
+      - url: https://signon.deakin.edu.au/idp/shibboleth
+        status: 200
+        note: Shibboleth/SAML2 IdP metadata reachable; federated SSO, not a public dev API.
+      - url: https://www.deakin.edu.au/
+        status: 403
+        note: Main site returns 403 to automated fetch (bot protection); resolves in browser.
+      - url: https://vmdp.deakin.edu.au/
+        status: 0
+        note: Victorian Marine Data Portal did not resolve during probing.
