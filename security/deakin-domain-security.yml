@@ -1,0 +1,45 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.deakin.edu.au
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 26 20:51:52 2026 GMT
+  hsts: false
+- host: dro.deakin.edu.au
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  9 23:59:59 2026 GMT
+  hsts: false
+- host: api.figshare.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Dec 25 23:59:59 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+domains:
+- domain: deakin.edu.au
+  dnssec: false
+  caa:
+  - 0 issue "geotrust.com"
+  - 0 issue "amazon.com"
+  - 0 issue "letsencrypt.org"
+  - 0 issue "amazonaws.com"
+  - 0 issue "awstrust.com"
+  - 0 issue "amazontrust.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
+- domain: figshare.com
+  dnssec: false
+  caa:
+  - 0 issuewild "sectigo.com"
+  - 0 issuewild "ssl.com"
+  - 0 issue "amazon.com"
+  - 0 issue "amazontrust.com"
+  - 0 issue "certainly.com"
+  - 0 issue "harica.gr"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

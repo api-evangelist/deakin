@@ -95,6 +95,10 @@ apis:
       - type: Documentation
         url: https://help.deakin.edu.au/login_locate_sso.do
 common:
+  - type: DomainSecurity
+    url: security/deakin-domain-security.yml
+  - type: Authentication
+    url: authentication/deakin-authentication.yml
   - type: OAuthScopes
     url: scopes/deakin-scopes.yml
   - type: Website
