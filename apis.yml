@@ -1,4 +1,3 @@
----
 aid: deakin
 name: Deakin University
 description: >-
@@ -13,9 +12,22 @@ description: >-
   research datasets, and an active GitHub organization. Most catalogued surfaces
   below are third-party-hosted or gated rather than first-party, documented APIs.
 type: Index
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+    - plans
+    - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/deakin.png
 url: https://raw.githubusercontent.com/api-evangelist/deakin/refs/heads/main/apis.yml
 tags:
   - Education
@@ -25,38 +37,38 @@ tags:
   - Open Data
   - Australia
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-07-25'
 specificationVersion: '0.19'
 apis:
   - aid: deakin:dro-oai
     name: Deakin Research Online (DRO) OAI-PMH
     description: >-
-      Deakin Research Online is the university's research repository, now hosted
-      on the figshare platform. It exposes research-output metadata for harvesting
-      via the OAI-PMH protocol. The DRO host issues a bot-challenge response to
-      automated clients; the underlying figshare OAI-PMH service is publicly
-      reachable.
+      Deakin Research Online is the university's research repository, now hosted on the figshare platform.
+      It exposes research-output metadata for harvesting via the OAI-PMH protocol. The DRO host issues a
+      bot-challenge response to automated clients; the underlying figshare OAI-PMH service is publicly reachable.
     humanURL: https://dro.deakin.edu.au/
     baseURL: https://api.figshare.com/v2/oai
-    tags: [ Research, Repository, OAI-PMH, Metadata, figshare ]
+    tags:
+      - Research
+      - Repository
+      - OAI-PMH
+      - Metadata
+      - figshare
     properties:
       - type: Documentation
         url: https://info.figshare.com/user-guide/how-to-use-figshares-oai-pmh-service/
-  - aid: deakin:figshare-api
-    name: figshare REST API (DRO platform)
-    description: >-
-      Deakin Research Online runs on figshare, whose public REST API (v2) provides
-      programmatic access to articles, collections and metadata across hosted
-      institutional repositories. This is a third-party platform API underpinning
-      DRO rather than a Deakin-branded API.
-    humanURL: https://docs.figshare.com/
-    baseURL: https://api.figshare.com/v2
-    tags: [ Research, Repository, REST, figshare ]
+  - aid: deakin:deakin-altmetric-api
+    name: Deakin University altmetric API
+    description: The altmetric API from Deakin University — 1 operation(s) for altmetric.
+    humanURL: https://dro.deakin.edu.au/
+    baseURL: https://api.figshare.com/v2/oai
+    tags:
+      - altmetric
     properties:
+      - type: OpenAPI
+        url: openapi/deakin-altmetric-api-openapi.yml
       - type: Documentation
         url: https://docs.figshare.com/
-      - type: OpenAPI
-        url: openapi/deakin-figshare-api.yaml
       - type: JSONSchema
         url: json-schema/deakin-article-schema.json
       - type: JSONStructure
@@ -69,31 +81,222 @@ apis:
         url: vocabulary/deakin-vocabulary.yml
       - type: JSONLD
         url: json-ld/deakin-context.jsonld
-  - aid: deakin:data-portal
-    name: Deakin Data Portal
-    description: >-
-      A public portal for Deakin researchers and research groups to share data and
-      collected materials with the Australian research community. It is a
-      web-delivered data-sharing platform; no documented public API was confirmed,
-      so it is catalogued as a data property rather than a documented API surface.
-    humanURL: https://dataportal.deakin.edu.au/
-    tags: [ Open Data, Research, Data Portal ]
+  - aid: deakin:deakin-articles-api
+    name: Deakin University articles API
+    description: The articles API from Deakin University — 34 operation(s) for articles.
+    humanURL: https://dro.deakin.edu.au/
+    baseURL: https://api.figshare.com/v2/oai
+    tags:
+      - articles
     properties:
+      - type: OpenAPI
+        url: openapi/deakin-articles-api-openapi.yml
       - type: Documentation
-        url: https://dataportal.deakin.edu.au/
-  - aid: deakin:sso
-    name: Deakin Single Sign-On (Shibboleth/SAML2 IdP)
-    description: >-
-      Deakin operates a Shibboleth/SAML2 identity provider for single sign-on
-      across university systems. The IdP metadata endpoint is publicly reachable,
-      but this is federated SSO infrastructure for relying parties, not a
-      documented public OAuth/OpenID developer API.
-    humanURL: https://signon.deakin.edu.au/
-    baseURL: https://signon.deakin.edu.au/idp/shibboleth
-    tags: [ Identity, SSO, SAML, Shibboleth, Authentication ]
+        url: https://docs.figshare.com/
+      - type: JSONSchema
+        url: json-schema/deakin-article-schema.json
+      - type: JSONStructure
+        url: json-structure/deakin-article-structure.json
+      - type: Examples
+        url: examples/deakin-get-article-example.json
+      - type: Rules
+        url: rules/deakin-rules.yml
+      - type: Vocabulary
+        url: vocabulary/deakin-vocabulary.yml
+      - type: JSONLD
+        url: json-ld/deakin-context.jsonld
+  - aid: deakin:deakin-authors-api
+    name: Deakin University authors API
+    description: The authors API from Deakin University — 2 operation(s) for authors.
+    humanURL: https://dro.deakin.edu.au/
+    baseURL: https://api.figshare.com/v2/oai
+    tags:
+      - authors
     properties:
+      - type: OpenAPI
+        url: openapi/deakin-authors-api-openapi.yml
       - type: Documentation
-        url: https://help.deakin.edu.au/login_locate_sso.do
+        url: https://docs.figshare.com/
+      - type: JSONSchema
+        url: json-schema/deakin-article-schema.json
+      - type: JSONStructure
+        url: json-structure/deakin-article-structure.json
+      - type: Examples
+        url: examples/deakin-get-article-example.json
+      - type: Rules
+        url: rules/deakin-rules.yml
+      - type: Vocabulary
+        url: vocabulary/deakin-vocabulary.yml
+      - type: JSONLD
+        url: json-ld/deakin-context.jsonld
+  - aid: deakin:deakin-collections-api
+    name: Deakin University collections API
+    description: The collections API from Deakin University — 21 operation(s) for collections.
+    humanURL: https://dro.deakin.edu.au/
+    baseURL: https://api.figshare.com/v2/oai
+    tags:
+      - collections
+    properties:
+      - type: OpenAPI
+        url: openapi/deakin-collections-api-openapi.yml
+      - type: Documentation
+        url: https://docs.figshare.com/
+      - type: JSONSchema
+        url: json-schema/deakin-article-schema.json
+      - type: JSONStructure
+        url: json-structure/deakin-article-structure.json
+      - type: Examples
+        url: examples/deakin-get-article-example.json
+      - type: Rules
+        url: rules/deakin-rules.yml
+      - type: Vocabulary
+        url: vocabulary/deakin-vocabulary.yml
+      - type: JSONLD
+        url: json-ld/deakin-context.jsonld
+  - aid: deakin:deakin-institutions-api
+    name: Deakin University institutions API
+    description: The institutions API from Deakin University — 20 operation(s) for institutions.
+    humanURL: https://dro.deakin.edu.au/
+    baseURL: https://api.figshare.com/v2/oai
+    tags:
+      - institutions
+    properties:
+      - type: OpenAPI
+        url: openapi/deakin-institutions-api-openapi.yml
+      - type: Documentation
+        url: https://docs.figshare.com/
+      - type: JSONSchema
+        url: json-schema/deakin-article-schema.json
+      - type: JSONStructure
+        url: json-structure/deakin-article-structure.json
+      - type: Examples
+        url: examples/deakin-get-article-example.json
+      - type: Rules
+        url: rules/deakin-rules.yml
+      - type: Vocabulary
+        url: vocabulary/deakin-vocabulary.yml
+      - type: JSONLD
+        url: json-ld/deakin-context.jsonld
+  - aid: deakin:deakin-oauth-api
+    name: Deakin University oauth API
+    description: The oauth API from Deakin University — 1 operation(s) for oauth.
+    humanURL: https://dro.deakin.edu.au/
+    baseURL: https://api.figshare.com/v2/oai
+    tags:
+      - oauth
+    properties:
+      - type: OpenAPI
+        url: openapi/deakin-oauth-api-openapi.yml
+      - type: Documentation
+        url: https://docs.figshare.com/
+      - type: JSONSchema
+        url: json-schema/deakin-article-schema.json
+      - type: JSONStructure
+        url: json-structure/deakin-article-structure.json
+      - type: Examples
+        url: examples/deakin-get-article-example.json
+      - type: Rules
+        url: rules/deakin-rules.yml
+      - type: Vocabulary
+        url: vocabulary/deakin-vocabulary.yml
+      - type: JSONLD
+        url: json-ld/deakin-context.jsonld
+  - aid: deakin:deakin-other-api
+    name: Deakin University other API
+    description: The other API from Deakin University — 7 operation(s) for other.
+    humanURL: https://dro.deakin.edu.au/
+    baseURL: https://api.figshare.com/v2/oai
+    tags:
+      - other
+    properties:
+      - type: OpenAPI
+        url: openapi/deakin-other-api-openapi.yml
+      - type: Documentation
+        url: https://docs.figshare.com/
+      - type: JSONSchema
+        url: json-schema/deakin-article-schema.json
+      - type: JSONStructure
+        url: json-structure/deakin-article-structure.json
+      - type: Examples
+        url: examples/deakin-get-article-example.json
+      - type: Rules
+        url: rules/deakin-rules.yml
+      - type: Vocabulary
+        url: vocabulary/deakin-vocabulary.yml
+      - type: JSONLD
+        url: json-ld/deakin-context.jsonld
+  - aid: deakin:deakin-profiles-api
+    name: Deakin University profiles API
+    description: The profiles API from Deakin University — 2 operation(s) for profiles.
+    humanURL: https://dro.deakin.edu.au/
+    baseURL: https://api.figshare.com/v2/oai
+    tags:
+      - profiles
+    properties:
+      - type: OpenAPI
+        url: openapi/deakin-profiles-api-openapi.yml
+      - type: Documentation
+        url: https://docs.figshare.com/
+      - type: JSONSchema
+        url: json-schema/deakin-article-schema.json
+      - type: JSONStructure
+        url: json-structure/deakin-article-structure.json
+      - type: Examples
+        url: examples/deakin-get-article-example.json
+      - type: Rules
+        url: rules/deakin-rules.yml
+      - type: Vocabulary
+        url: vocabulary/deakin-vocabulary.yml
+      - type: JSONLD
+        url: json-ld/deakin-context.jsonld
+  - aid: deakin:deakin-projects-api
+    name: Deakin University projects API
+    description: The projects API from Deakin University — 17 operation(s) for projects.
+    humanURL: https://dro.deakin.edu.au/
+    baseURL: https://api.figshare.com/v2/oai
+    tags:
+      - projects
+    properties:
+      - type: OpenAPI
+        url: openapi/deakin-projects-api-openapi.yml
+      - type: Documentation
+        url: https://docs.figshare.com/
+      - type: JSONSchema
+        url: json-schema/deakin-article-schema.json
+      - type: JSONStructure
+        url: json-structure/deakin-article-structure.json
+      - type: Examples
+        url: examples/deakin-get-article-example.json
+      - type: Rules
+        url: rules/deakin-rules.yml
+      - type: Vocabulary
+        url: vocabulary/deakin-vocabulary.yml
+      - type: JSONLD
+        url: json-ld/deakin-context.jsonld
+  - aid: deakin:deakin-symplectic-api
+    name: Deakin University symplectic API
+    description: The symplectic API from Deakin University — 5 operation(s) for symplectic.
+    humanURL: https://dro.deakin.edu.au/
+    baseURL: https://api.figshare.com/v2/oai
+    tags:
+      - symplectic
+    properties:
+      - type: OpenAPI
+        url: openapi/deakin-symplectic-api-openapi.yml
+      - type: Documentation
+        url: https://docs.figshare.com/
+      - type: JSONSchema
+        url: json-schema/deakin-article-schema.json
+      - type: JSONStructure
+        url: json-structure/deakin-article-structure.json
+      - type: Examples
+        url: examples/deakin-get-article-example.json
+      - type: Rules
+        url: rules/deakin-rules.yml
+      - type: Vocabulary
+        url: vocabulary/deakin-vocabulary.yml
+      - type: JSONLD
+        url: json-ld/deakin-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/deakin-agentic-access.yml
@@ -119,6 +322,8 @@ common:
     url: finops/deakin-finops.yml
   - type: Review
     url: review.yml
+  - type: ProductPage
+    url: https://dataportal.deakin.edu.au/
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
