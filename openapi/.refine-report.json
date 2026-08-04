@@ -1,0 +1,32 @@
+{
+  "provider": "deakin",
+  "sources": [
+    "deakin-altmetric-api-openapi.yml",
+    "deakin-articles-api-openapi.yml",
+    "deakin-authors-api-openapi.yml",
+    "deakin-collections-api-openapi.yml",
+    "deakin-institutions-api-openapi.yml",
+    "deakin-oauth-api-openapi.yml",
+    "deakin-other-api-openapi.yml",
+    "deakin-profiles-api-openapi.yml",
+    "deakin-projects-api-openapi.yml",
+    "deakin-symplectic-api-openapi.yml"
+  ],
+  "outputs": [
+    "deakin-altmetric-api-openapi.yml",
+    "deakin-articles-api-openapi.yml",
+    "deakin-authors-api-openapi.yml",
+    "deakin-collections-api-openapi.yml",
+    "deakin-institutions-api-openapi.yml",
+    "deakin-oauth-api-openapi.yml",
+    "deakin-other-api-openapi.yml",
+    "deakin-profiles-api-openapi.yml",
+    "deakin-projects-api-openapi.yml",
+    "deakin-symplectic-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
