@@ -329,6 +329,9 @@ apis:
       - type: JSONLD
         url: json-ld/deakin-context.jsonld
 common:
+  - type: CapabilityMap
+    url: capabilities/deakin-capability-edges.yml
+    name: Deakin University Business Capability Map
   - type: AgenticAccess
     url: agentic-access/deakin-agentic-access.yml
   - type: DomainSecurity
