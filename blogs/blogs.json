@@ -1,0 +1,11 @@
+{
+  "repo": "deakin",
+  "feeds": [
+    {
+      "source": "https://au.linkedin.com/school/deakin-university/",
+      "error": "HTTPError"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-08-30T22:33:40Z"
+}

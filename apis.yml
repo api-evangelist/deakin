@@ -1,363 +1,313 @@
 aid: deakin
 name: Deakin University
 description: >-
-  Deakin University is a public research university in Victoria, Australia, with
-  campuses in Geelong, Warrnambool and Melbourne, ranked #197 in the QS World
-  University Rankings 2025. Like most universities, Deakin operates an
-  integration-heavy IT estate (its SSO is a Shibboleth/SAML2 identity provider)
-  but does not publish a public, self-service developer API portal. Its
-  confirmed public, machine-readable footprint is concentrated in research
-  infrastructure: the Deakin Research Online (DRO) repository runs on figshare
-  (which exposes a public OAI-PMH and REST API), a public Data Portal for sharing
-  research datasets, and an active GitHub organization. Most catalogued surfaces
-  below are third-party-hosted or gated rather than first-party, documented APIs.
+  Deakin University is a public research university in Victoria, Australia, with campuses in
+  Geelong, Warrnambool and Melbourne. Its genuinely institution-operated programmable footprint is
+  small, real, and entirely in identity federation. Deakin self-publishes a complete SAML 2.0
+  EntityDescriptor at signon.deakin.edu.au/idp/shibboleth for a Shibboleth identity provider it runs
+  on its own APNIC address space (128.184.0.0/16, netname DEAKINUNIVERSITY) under a Deakin-procured
+  DigiCert certificate, and it registers that IdP plus three production service providers — the
+  Deakin Data Portal, Envirocare and OT Simulations — in the Australian Access Federation. That
+  metadata document is the only institution-operated machine-readable contract in this profile, and
+  it is what earns Deakin its SAML and Shibboleth conformance. Deakin is also the registrant behind
+  4,597 DataCite DOIs (prefix 10.26187, repository ARDCX.DEAKIN under ARDC) and 1,303 Crossref
+  deposits (member 8935, prefix 10.21153). Everything else that looks like a Deakin API belongs to a
+  platform Deakin buys: Deakin Research Online is figshare (dro.deakin.edu.au CNAMEs to
+  proxy-eu-01.figshare.com), CloudDeakin is D2L Brightspace (d2l.deakin.edu.au CNAMEs to
+  deakin.brightspace.com, and its keyless Valence version manifest is the only JSON API answering on
+  any deakin.edu.au host), library discovery resolves into Ex Libris address space, and the
+  federated SSO endpoints registered with AAF sit on AAF's managed Rapid IdP on Amazon
+  infrastructure. Those are recorded here as tenant relationships, not as Deakin contracts. There is
+  no central developer portal, no institution-operated OAI-PMH endpoint, and no public course or
+  campus API. The wider deakin.edu.au web estate — www, blogs, the Data Portal, the handbook — sits
+  behind F5/Shape bot protection that answers automated clients with a JavaScript challenge, so it
+  is not machine-readable at all.
 type: Index
 deliveryModel:
   model: saas
   open_source: false
-  commercial: true
-  callable_host: true
-  label: Hosted service · you call their endpoint
-  confidence: high
+  commercial: false
+  callable_host: false
+  label: Hosted service · no first-party callable API product
+  confidence: medium
   source:
-  - openapi
+  - identity-federation
   - pricing
-  generated: '2026-08-28'
+  generated: '2026-08-30'
   method: derived
 accessModel:
   pricing: free
-  onboarding: self-serve
+  onboarding: institutional
   trial: false
-  try_now: true
+  try_now: false
   public: false
-  label: Free · Self-serve signup
+  label: Free · Institutional affiliation or federation membership required
   confidence: high
   source:
-    - plans
-    - authentication
-  generated: '2026-07-22'
+  - identity-federation
+  - plans
+  generated: '2026-08-30'
   method: derived
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/deakin.png
 url: https://raw.githubusercontent.com/api-evangelist/deakin/refs/heads/main/apis.yml
 tags:
-  - Education
-  - Higher Education
-  - University
-  - Research
-  - Open Data
-  - Australia
+- Education
+- Higher Education
+- University
+- Research
+- Australia
+- Victoria
+- Identity Federation
+- Research Repository
+- Research Data
+- Learning Management
 created: '2026-06-03'
-modified: '2026-07-25'
+modified: '2026-08-30'
 specificationVersion: '0.23'
+x-type: university
+x-category: Public Research University
+x-coverage:
+  state: covered
+  reason: no_public_api
+  detail: >-
+    Deakin publishes no public developer API, no developer portal and no OpenAPI, and this profile
+    says so rather than padding it. What it does operate was confirmed by IP ownership and
+    certificate procurement rather than by hostname: signon.deakin.edu.au serves a complete SAML 2.0
+    EntityDescriptor (HTTP 200, application/xml, 4,826 bytes) from 128.184.0.0/16, which APNIC
+    attributes to DEAKINUNIVERSITY, on a certificate issued to O=Deakin University. That document is
+    saved here. The Deakin Data Portal is a second institution-operated surface on the same address
+    space, registered in AAF as a Shibboleth SP, but it returns an F5/Shape JavaScript challenge
+    body on every path — as do www.deakin.edu.au (HTTP 403), blogs.deakin.edu.au (HTTP 200 with a
+    challenge body, including /wp-json/ and /feed/), handbook.deakin.edu.au and
+    research.deakin.edu.au — so no contract could be read from any of them.
+
+    This profile is a correction. The June 2026 run attributed eleven APIs and 53 derived artifacts
+    to Deakin that were one figshare contract: every OpenAPI carried info.title "Figshare …",
+    contact "Figshare Support" and servers https://api.figshare.com/v2, and the same document is
+    shipped by eleven other institutions in this cohort. All 53 files were removed on 2026-08-30 and
+    the figshare relationship is recorded as a tenant surface instead. Expect the score to fall;
+    that is the correction working.
 apis:
-  - aid: deakin:dro-oai
-    name: Deakin Research Online (DRO) OAI-PMH
-    description: >-
-      Deakin Research Online is the university's research repository, now hosted on the figshare platform.
-      It exposes research-output metadata for harvesting via the OAI-PMH protocol. The DRO host issues a
-      bot-challenge response to automated clients; the underlying figshare OAI-PMH service is publicly reachable.
-    humanURL: https://dro.deakin.edu.au/
-    baseURL: https://api.figshare.com/v2/oai
-    tags:
-      - Research
-      - Repository
-      - OAI-PMH
-      - Metadata
-      - Figshare
-    tags_raw:
-      - Research
-      - Repository
-      - OAI-PMH
-      - Metadata
-      - figshare
-    properties:
-      - type: Documentation
-        url: https://info.figshare.com/user-guide/how-to-use-figshares-oai-pmh-service/
-  - aid: deakin:deakin-altmetric-api
-    name: Deakin University altmetric API
-    description: The altmetric API from Deakin University — 1 operation(s) for altmetric.
-    humanURL: https://dro.deakin.edu.au/
-    baseURL: https://api.figshare.com/v2/oai
-    tags:
-      - altmetric
-    properties:
-      - type: OpenAPI
-        url: openapi/deakin-altmetric-api-openapi.yml
-      - type: Documentation
-        url: https://docs.figshare.com/
-      - type: JSONSchema
-        url: json-schema/deakin-article-schema.json
-      - type: JSONStructure
-        url: json-structure/deakin-article-structure.json
-      - type: Examples
-        url: examples/deakin-get-article-example.json
-      - type: Rules
-        url: rules/deakin-rules.yml
-      - type: Vocabulary
-        url: vocabulary/deakin-vocabulary.yml
-      - type: JSONLD
-        url: json-ld/deakin-context.jsonld
-  - aid: deakin:deakin-articles-api
-    name: Deakin University articles API
-    description: The articles API from Deakin University — 34 operation(s) for articles.
-    humanURL: https://dro.deakin.edu.au/
-    baseURL: https://api.figshare.com/v2/oai
-    tags:
-      - Articles
-    tags_raw:
-      - articles
-    properties:
-      - type: OpenAPI
-        url: openapi/deakin-articles-api-openapi.yml
-      - type: Documentation
-        url: https://docs.figshare.com/
-      - type: JSONSchema
-        url: json-schema/deakin-article-schema.json
-      - type: JSONStructure
-        url: json-structure/deakin-article-structure.json
-      - type: Examples
-        url: examples/deakin-get-article-example.json
-      - type: Rules
-        url: rules/deakin-rules.yml
-      - type: Vocabulary
-        url: vocabulary/deakin-vocabulary.yml
-      - type: JSONLD
-        url: json-ld/deakin-context.jsonld
-  - aid: deakin:deakin-authors-api
-    name: Deakin University authors API
-    description: The authors API from Deakin University — 2 operation(s) for authors.
-    humanURL: https://dro.deakin.edu.au/
-    baseURL: https://api.figshare.com/v2/oai
-    tags:
-      - Authors
-    tags_raw:
-      - authors
-    properties:
-      - type: OpenAPI
-        url: openapi/deakin-authors-api-openapi.yml
-      - type: Documentation
-        url: https://docs.figshare.com/
-      - type: JSONSchema
-        url: json-schema/deakin-article-schema.json
-      - type: JSONStructure
-        url: json-structure/deakin-article-structure.json
-      - type: Examples
-        url: examples/deakin-get-article-example.json
-      - type: Rules
-        url: rules/deakin-rules.yml
-      - type: Vocabulary
-        url: vocabulary/deakin-vocabulary.yml
-      - type: JSONLD
-        url: json-ld/deakin-context.jsonld
-  - aid: deakin:deakin-collections-api
-    name: Deakin University collections API
-    description: The collections API from Deakin University — 21 operation(s) for collections.
-    humanURL: https://dro.deakin.edu.au/
-    baseURL: https://api.figshare.com/v2/oai
-    tags:
-      - Collection
-    tags_raw:
-      - collections
-    properties:
-      - type: OpenAPI
-        url: openapi/deakin-collections-api-openapi.yml
-      - type: Documentation
-        url: https://docs.figshare.com/
-      - type: JSONSchema
-        url: json-schema/deakin-article-schema.json
-      - type: JSONStructure
-        url: json-structure/deakin-article-structure.json
-      - type: Examples
-        url: examples/deakin-get-article-example.json
-      - type: Rules
-        url: rules/deakin-rules.yml
-      - type: Vocabulary
-        url: vocabulary/deakin-vocabulary.yml
-      - type: JSONLD
-        url: json-ld/deakin-context.jsonld
-  - aid: deakin:deakin-institutions-api
-    name: Deakin University institutions API
-    description: The institutions API from Deakin University — 20 operation(s) for institutions.
-    humanURL: https://dro.deakin.edu.au/
-    baseURL: https://api.figshare.com/v2/oai
-    tags:
-      - institutions
-    properties:
-      - type: OpenAPI
-        url: openapi/deakin-institutions-api-openapi.yml
-      - type: Documentation
-        url: https://docs.figshare.com/
-      - type: JSONSchema
-        url: json-schema/deakin-article-schema.json
-      - type: JSONStructure
-        url: json-structure/deakin-article-structure.json
-      - type: Examples
-        url: examples/deakin-get-article-example.json
-      - type: Rules
-        url: rules/deakin-rules.yml
-      - type: Vocabulary
-        url: vocabulary/deakin-vocabulary.yml
-      - type: JSONLD
-        url: json-ld/deakin-context.jsonld
-  - aid: deakin:deakin-oauth-api
-    name: Deakin University oauth API
-    description: The oauth API from Deakin University — 1 operation(s) for oauth.
-    humanURL: https://dro.deakin.edu.au/
-    baseURL: https://api.figshare.com/v2/oai
-    tags:
-      - Authentication
-    tags_raw:
-      - oauth
-    properties:
-      - type: OpenAPI
-        url: openapi/deakin-oauth-api-openapi.yml
-      - type: Documentation
-        url: https://docs.figshare.com/
-      - type: JSONSchema
-        url: json-schema/deakin-article-schema.json
-      - type: JSONStructure
-        url: json-structure/deakin-article-structure.json
-      - type: Examples
-        url: examples/deakin-get-article-example.json
-      - type: Rules
-        url: rules/deakin-rules.yml
-      - type: Vocabulary
-        url: vocabulary/deakin-vocabulary.yml
-      - type: JSONLD
-        url: json-ld/deakin-context.jsonld
-  - aid: deakin:deakin-other-api
-    name: Deakin University other API
-    description: The other API from Deakin University — 7 operation(s) for other.
-    humanURL: https://dro.deakin.edu.au/
-    baseURL: https://api.figshare.com/v2/oai
-    tags: []
-    tags_raw:
-      - other
-    properties:
-      - type: OpenAPI
-        url: openapi/deakin-other-api-openapi.yml
-      - type: Documentation
-        url: https://docs.figshare.com/
-      - type: JSONSchema
-        url: json-schema/deakin-article-schema.json
-      - type: JSONStructure
-        url: json-structure/deakin-article-structure.json
-      - type: Examples
-        url: examples/deakin-get-article-example.json
-      - type: Rules
-        url: rules/deakin-rules.yml
-      - type: Vocabulary
-        url: vocabulary/deakin-vocabulary.yml
-      - type: JSONLD
-        url: json-ld/deakin-context.jsonld
-  - aid: deakin:deakin-profiles-api
-    name: Deakin University profiles API
-    description: The profiles API from Deakin University — 2 operation(s) for profiles.
-    humanURL: https://dro.deakin.edu.au/
-    baseURL: https://api.figshare.com/v2/oai
-    tags:
-      - Profiles
-    tags_raw:
-      - profiles
-    properties:
-      - type: OpenAPI
-        url: openapi/deakin-profiles-api-openapi.yml
-      - type: Documentation
-        url: https://docs.figshare.com/
-      - type: JSONSchema
-        url: json-schema/deakin-article-schema.json
-      - type: JSONStructure
-        url: json-structure/deakin-article-structure.json
-      - type: Examples
-        url: examples/deakin-get-article-example.json
-      - type: Rules
-        url: rules/deakin-rules.yml
-      - type: Vocabulary
-        url: vocabulary/deakin-vocabulary.yml
-      - type: JSONLD
-        url: json-ld/deakin-context.jsonld
-  - aid: deakin:deakin-projects-api
-    name: Deakin University projects API
-    description: The projects API from Deakin University — 17 operation(s) for projects.
-    humanURL: https://dro.deakin.edu.au/
-    baseURL: https://api.figshare.com/v2/oai
-    tags:
-      - Project
-    tags_raw:
-      - projects
-    properties:
-      - type: OpenAPI
-        url: openapi/deakin-projects-api-openapi.yml
-      - type: Documentation
-        url: https://docs.figshare.com/
-      - type: JSONSchema
-        url: json-schema/deakin-article-schema.json
-      - type: JSONStructure
-        url: json-structure/deakin-article-structure.json
-      - type: Examples
-        url: examples/deakin-get-article-example.json
-      - type: Rules
-        url: rules/deakin-rules.yml
-      - type: Vocabulary
-        url: vocabulary/deakin-vocabulary.yml
-      - type: JSONLD
-        url: json-ld/deakin-context.jsonld
-  - aid: deakin:deakin-symplectic-api
-    name: Deakin University symplectic API
-    description: The symplectic API from Deakin University — 5 operation(s) for symplectic.
-    humanURL: https://dro.deakin.edu.au/
-    baseURL: https://api.figshare.com/v2/oai
-    tags:
-      - symplectic
-    properties:
-      - type: OpenAPI
-        url: openapi/deakin-symplectic-api-openapi.yml
-      - type: Documentation
-        url: https://docs.figshare.com/
-      - type: JSONSchema
-        url: json-schema/deakin-article-schema.json
-      - type: JSONStructure
-        url: json-structure/deakin-article-structure.json
-      - type: Examples
-        url: examples/deakin-get-article-example.json
-      - type: Rules
-        url: rules/deakin-rules.yml
-      - type: Vocabulary
-        url: vocabulary/deakin-vocabulary.yml
-      - type: JSONLD
-        url: json-ld/deakin-context.jsonld
-common:
-  - type: CapabilityMap
-    url: capabilities/deakin-capability-edges.yml
-    name: Deakin University Business Capability Map
-  - type: AgenticAccess
-    url: agentic-access/deakin-agentic-access.yml
-  - type: DomainSecurity
-    url: security/deakin-domain-security.yml
-  - type: Authentication
-    url: authentication/deakin-authentication.yml
-  - type: OAuthScopes
-    url: scopes/deakin-scopes.yml
-  - type: Website
-    url: https://www.deakin.edu.au/
-  - type: GitHub
-    url: https://github.com/Deakin
-  - type: LinkedIn
-    url: https://au.linkedin.com/school/deakin-university/
-  - type: Authentication
-    url: https://signon.deakin.edu.au/
-  - type: Plans
-    url: plans/deakin-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/deakin-rate-limits.yml
-  - type: FinOps
-    url: finops/deakin-finops.yml
-  - type: Review
-    url: review.yml
-  - type: ProductPage
+- aid: deakin:saml-idp
+  name: Deakin University SAML 2.0 Identity Provider
+  description: >-
+    Deakin's Shibboleth identity provider, self-hosted and self-described. The EntityDescriptor at
+    https://signon.deakin.edu.au/idp/shibboleth declares protocol support for SAML 2.0, a signing
+    and an encryption key, a shibmd:Scope of deakin.edu.au, three SingleSignOnService bindings
+    (HTTP-POST, HTTP-POST-SimpleSign, HTTP-Redirect) and two SingleLogoutService bindings, all
+    located on signon.deakin.edu.au. The host CNAMEs to
+    shib-idp5-shib-2024061000-prod.aa-global.deakin.edu.au and resolves into 128.184.0.0/16
+    (APNIC netname DEAKINUNIVERSITY) under a Deakin-procured DigiCert wildcard certificate. This is
+    the only institution-operated machine-readable contract found anywhere in Deakin's public
+    footprint.
+  humanURL: https://signon.deakin.edu.au/
+  baseURL: https://signon.deakin.edu.au/idp/
+  x-operator: institution
+  tags:
+  - Identity Federation
+  - SAML
+  - Shibboleth
+  - Single Sign-On
+  properties:
+  - type: IdentityFederation
+    url: https://signon.deakin.edu.au/idp/shibboleth
+  - type: Metadata
+    url: identity-federation/deakin-idp-saml-metadata.xml
+  - type: Conformance
+    url: conformance/deakin-conformance.yml
+  - type: Documentation
+    url: identity-federation/deakin-identity-federation.yml
+- aid: deakin:aaf-federated-idp
+  name: Deakin University federated SSO (AAF Rapid IdP)
+  description: >-
+    The federation-registered deployment of the same entityID. In the AAF production aggregate,
+    https://signon.deakin.edu.au/idp/shibboleth carries SingleSignOnService locations on
+    aaf.deakin.edu.au, which CNAMEs to ec9a7f24c761e9b79a6c8c40560c805e.idp-cname.aaf.edu.au and
+    resolves to Amazon address space (AT-88-Z) on an Amazon-issued certificate — AAF's fully managed
+    Rapid IdP. Registered 2025-11-09, carrying REFEDS Research & Scholarship, REFEDS Code of Conduct
+    v2, the GEANT Data Protection Code of Conduct and REFEDS Sirtfi assurance. The identity data and
+    attribute release are Deakin's; the infrastructure and the metadata-serving endpoint are AAF's,
+    so this is recorded as a tenant relationship and not as a second Deakin contract.
+  humanURL: https://aaf.edu.au/subscribers/rapididp/
+  baseURL: https://aaf.deakin.edu.au/idp/
+  x-operator: tenant
+  tags:
+  - Identity Federation
+  - SAML
+  - AAF
+  - Managed Service
+  properties:
+  - type: IdentityFederation
+    url: https://md.aaf.edu.au/aaf-metadata.xml
+  - type: Documentation
+    url: identity-federation/deakin-identity-federation.yml
+- aid: deakin:dataportal
+  name: Deakin Data Portal
+  description: >-
+    Deakin's research data portal, used to share datasets and collected materials with the
+    Australian research community. Institution-operated: dataportal.deakin.edu.au CNAMEs to
+    aafapp-p7-web-2020013100-prod.aa-global.deakin.edu.au inside Deakin's own 128.184.0.0/16, and it
+    is registered in the AAF aggregate as the Shibboleth service provider
+    https://dataportal.deakin.edu.au/shibboleth ("Deakin Data Portal", organization Deakin
+    University). Deakin's GitHub organization carries forks of ReDBox, Mint and The Fascinator,
+    which is the research-data-management stack this class of portal is normally built on. No
+    contract could be read from it: every path, including /api, /mint/ and /redbox/, returns an
+    F5/Shape JavaScript challenge page rather than content, so no OAI-PMH or REST surface is claimed
+    here.
+  humanURL: https://dataportal.deakin.edu.au/
+  baseURL: https://dataportal.deakin.edu.au/
+  x-operator: institution
+  tags:
+  - Research Data
+  - Open Data
+  - Repository
+  - Identity Federation
+  properties:
+  - type: OpenData
     url: https://dataportal.deakin.edu.au/
+  - type: IdentityFederation
+    url: https://md.aaf.edu.au/aaf-metadata.xml
+- aid: deakin:dro-figshare
+  name: Deakin Research Online (DRO) — figshare tenant
+  description: >-
+    Deakin Research Online is Deakin's institutional research repository, running on figshare.
+    dro.deakin.edu.au is a CNAME to proxy-eu-01.figshare.com and returns HTTP 202 with a zero-byte
+    body to automated clients. The data, the DOIs and the collection policy are Deakin's; the
+    contract is figshare's and is deliberately NOT saved in this repository — the June 2026 profile
+    saved it as eleven Deakin APIs, and all of it was removed on 2026-08-30. figshare's own generic
+    OAI-PMH and REST v2 endpoints live on api.figshare.com and belong to figshare's profile.
+  humanURL: https://dro.deakin.edu.au/
+  baseURL: https://dro.deakin.edu.au/
+  x-operator: tenant
+  tags:
+  - Research Repository
+  - Research Data
+  - Figshare
+  tags_raw:
+  - Research Repository
+  - Research Data
+  - figshare
+  properties:
+  - type: ResearchRepository
+    url: https://dro.deakin.edu.au/
+  - type: Documentation
+    url: https://docs.figshare.com/
+- aid: deakin:clouddeakin
+  name: CloudDeakin — D2L Brightspace tenant
+  description: >-
+    Deakin's learning management system. d2l.deakin.edu.au CNAMEs to deakin.brightspace.com on AWS
+    ap-southeast-2. Its keyless D2L Valence version manifest at /d2l/api/versions/ answers HTTP 200
+    with application/json (2,400 bytes) listing fifteen product codes including lti, le, lp, ep and
+    campusLife — the only JSON API contract that responds to an automated client on any
+    deakin.edu.au hostname. It is D2L's contract on Deakin's tenant, so it is recorded as a tenant
+    surface and the specification is not saved here.
+  humanURL: https://d2l.deakin.edu.au/
+  baseURL: https://d2l.deakin.edu.au/d2l/api/
+  x-operator: tenant
+  tags:
+  - Learning Management
+  - LTI
+  - Brightspace
+  properties:
+  - type: APIReference
+    url: https://d2l.deakin.edu.au/d2l/api/versions/
+  - type: Documentation
+    url: https://docs.valence.desire2learn.com/
+- aid: deakin:library-discovery
+  name: Deakin University Library catalogue — Ex Libris tenant
+  description: >-
+    Library discovery for Deakin. library.deakin.edu.au resolves to 216.147.221.162, which whois
+    attributes to Ex Libris (USA) Inc. (netname EXLIBRIS-20-1) — a vendor platform under a Deakin
+    hostname. The host did not answer our probes (connection timeout after 30s from this vantage
+    point), so nothing about its interface is claimed; the library's own pages sit on
+    www.deakin.edu.au behind bot protection.
+  humanURL: https://www.deakin.edu.au/library
+  baseURL: https://library.deakin.edu.au/
+  x-operator: tenant
+  tags:
+  - Library
+  - Discovery
+  - Ex Libris
+  properties:
+  - type: LibraryCatalog
+    url: https://www.deakin.edu.au/library
+- aid: deakin:datacite-repository
+  name: Deakin University DataCite repository (ARDCX.DEAKIN)
+  description: >-
+    Deakin's own DataCite repository account, held under the ARDC (Australian Research Data Commons)
+    consortium since 2020-05-14, with DOI prefix 10.26187. 4,597 DOIs are registered against it and
+    4,596 carry publisher "Deakin University"; the suffix pattern (deakin.33365271) shows they are
+    minted through the figshare tenant. The registrations and their DataCite-schema metadata are
+    Deakin's and are publicly queryable, but the API is DataCite's, so this is a tenant surface.
+  humanURL: https://commons.datacite.org/repositories/ardcx.deakin
+  baseURL: https://api.datacite.org/
+  x-operator: tenant
+  tags:
+  - DataCite
+  - DOI
+  - Research Data
+  - Persistent Identifiers
+  properties:
+  - type: APIReference
+    url: https://api.datacite.org/clients/ardcx.deakin
+  - type: Conformance
+    url: conformance/deakin-conformance.yml
+- aid: deakin:crossref-member
+  name: Deakin University Crossref membership (member 8935)
+  description: >-
+    Deakin is a Crossref member depositing its own DOIs under prefix 10.21153 — 1,303 works,
+    predominantly journal articles from its scholarly publishing. Publicly queryable through the
+    Crossref REST API. The deposits are Deakin's; the contract is Crossref's.
+  humanURL: https://www.crossref.org/
+  baseURL: https://api.crossref.org/
+  x-operator: tenant
+  tags:
+  - Crossref
+  - DOI
+  - Scholarly Publishing
+  - Persistent Identifiers
+  properties:
+  - type: APIReference
+    url: https://api.crossref.org/members/8935
+  - type: Conformance
+    url: conformance/deakin-conformance.yml
+common:
+- type: Website
+  url: https://www.deakin.edu.au/
+- type: IdentityFederation
+  url: identity-federation/deakin-identity-federation.yml
+- type: Conformance
+  url: conformance/deakin-conformance.yml
+- type: OpenData
+  url: https://dataportal.deakin.edu.au/
+- type: ResearchRepository
+  url: https://dro.deakin.edu.au/
+- type: LibraryCatalog
+  url: https://www.deakin.edu.au/library
+- type: CourseCatalog
+  url: https://www.deakin.edu.au/study/find-a-course
+- type: AIPolicy
+  url: https://www.deakin.edu.au/about-deakin/why-deakin/generative-artificial-intelligence
+- type: AITooling
+  url: https://www.deakin.edu.au/students/study-support/study-resources/artificial-intelligence
+- type: GitHub
+  url: https://github.com/Deakin
+- type: LinkedIn
+  url: https://au.linkedin.com/school/deakin-university/
+- type: Blog
+  url: https://blogs.deakin.edu.au/
+- type: DomainSecurity
+  url: security/deakin-domain-security.yml
+- type: Plans
+  url: plans/deakin-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/deakin-rate-limits.yml
+- type: FinOps
+  url: finops/deakin-finops.yml
+- type: Review
+  url: review.yml
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
