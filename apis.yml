@@ -48,7 +48,7 @@ accessModel:
   - plans
   generated: '2026-08-30'
   method: derived
-position: Consumer
+position: Consuming
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/deakin.png
 url: https://raw.githubusercontent.com/api-evangelist/deakin/refs/heads/main/apis.yml
