@@ -1,0 +1,185 @@
+specification: API Evangelist Identity Federation
+specificationVersion: '0.1'
+provider: Deakin University
+providerId: deakin
+generated: '2026-08-30'
+method: probed
+source: >-
+  Live fetch of https://signon.deakin.edu.au/idp/shibboleth (SAML 2.0 EntityDescriptor,
+  HTTP 200, application/xml;charset=utf-8, 4,826 bytes), archived here as
+  deakin-idp-saml-metadata.xml; live fetch of https://aaf.deakin.edu.au/idp/shibboleth
+  (HTTP 200, application/xml, 4,442 bytes); the Australian Access Federation production
+  metadata aggregate https://md.aaf.edu.au/aaf-metadata.xml (HTTP 200, 3,178,473 bytes,
+  360 EntityDescriptors) parsed for every entityID containing "deakin"; and DNS, TLS and
+  whois resolution of every host involved, to settle who operates the thing each contract
+  describes.
+description: >-
+  Deakin University's SAML 2.0 identity federation surface — the one genuinely
+  institution-operated, machine-readable contract found anywhere in this profile. Operator
+  was settled by IP ownership and certificate procurement, not by hostname, and the answer
+  is split in an interesting way.
+
+  The IdP that Deakin serves itself, at https://signon.deakin.edu.au/idp/shibboleth, is
+  Deakin's own: signon.deakin.edu.au CNAMEs to shib-idp5-shib-2024061000-prod.aa-global.deakin.edu.au
+  and resolves into 128.184.0.0/16, which APNIC attributes to netname DEAKINUNIVERSITY, on a
+  Deakin-procured DigiCert certificate issued to "C=AU, ST=Victoria, L=Geelong, O=Deakin
+  University, CN=*.deakin.edu.au". Every SingleSignOnService and SingleLogoutService location
+  in that document is on signon.deakin.edu.au. That is Deakin running Shibboleth on Deakin
+  hardware and publishing the contract for it.
+
+  The federation-registered copy of the SAME entityID is not. In the AAF production aggregate,
+  entityID https://signon.deakin.edu.au/idp/shibboleth carries SingleSignOnService locations on
+  aaf.deakin.edu.au, and aaf.deakin.edu.au CNAMEs to
+  ec9a7f24c761e9b79a6c8c40560c805e.idp-cname.aaf.edu.au, resolving to 13.35.93.0/24 (Amazon
+  Technologies Inc., AT-88-Z / CloudFront) on an Amazon-issued certificate. The
+  idp-cname.aaf.edu.au pattern is AAF's Rapid IdP managed service — the same shape recorded for
+  Monash and Melbourne. The AAF registration instant is 2025-11-09, which reads as a migration
+  from the self-hosted IdP to the AAF-managed one that is in flight rather than finished: both
+  endpoints answer today, and they answer with different SSO locations for one entityID.
+
+  Both are recorded. The self-served IdP is institution-operated and is what earns Deakin its
+  SAML and Shibboleth conformance. The federated deployment is a tenant relationship on AAF's
+  managed platform — a real institutional fact, and not deleted to tidy the attribution.
+
+federation:
+  name: Australian Access Federation
+  abbreviation: AAF
+  metadata_aggregate: https://md.aaf.edu.au/aaf-metadata.xml
+  aggregate_status: 200
+  aggregate_bytes: 3178473
+  aggregate_entities: 360
+  registration_authority: https://aaf.edu.au
+  registration_policy: https://aaf.edu.au/media/metadata/aaf-mdrps-v1.1.pdf
+  interfederation: eduGAIN
+  interfederation_note: >-
+    AAF is an eduGAIN participant federation. No eduGAIN export marker was found on Deakin's own
+    entities inside the AAF production aggregate, so eduGAIN reach is NOT claimed here — only AAF
+    registration is evidenced.
+  probed: '2026-08-30'
+
+identity_provider:
+  entityID: https://signon.deakin.edu.au/idp/shibboleth
+  x-operator: institution
+  operator_basis: >-
+    signon.deakin.edu.au CNAME shib-idp5-shib-2024061000-prod.aa-global.deakin.edu.au ->
+    128.184.233.111 / .235.111 / .237.111 / .239.111. whois: inetnum 128.184.0.0 - 128.184.255.255,
+    netname DEAKINUNIVERSITY, descr "Deakin University", country AU (APNIC). TLS: issuer DigiCert
+    Global G2 TLS RSA SHA256 2020 CA1, subject C=AU/ST=Victoria/L=Geelong/O=Deakin
+    University/CN=*.deakin.edu.au, valid 2026-02-18 to 2027-03-21. Deakin address space, Deakin-procured
+    certificate, Deakin-hosted endpoints.
+  metadata_url: https://signon.deakin.edu.au/idp/shibboleth
+  metadata_status: 200
+  metadata_content_type: application/xml;charset=utf-8
+  metadata_bytes: 4826
+  local_copy: identity-federation/deakin-idp-saml-metadata.xml
+  software: Shibboleth Identity Provider (shibmd namespace present; hostname series shib-idp5)
+  scope: deakin.edu.au
+  display_name: Deakin University
+  protocols:
+  - urn:oasis:names:tc:SAML:2.0:protocol
+  key_descriptors:
+  - use: signing
+  - use: encryption
+  endpoints:
+  - binding: urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST
+    location: https://signon.deakin.edu.au/idp/profile/SAML2/POST/SSO
+    service: SingleSignOnService
+  - binding: urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign
+    location: https://signon.deakin.edu.au/idp/profile/SAML2/POST-SimpleSign/SSO
+    service: SingleSignOnService
+  - binding: urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect
+    location: https://signon.deakin.edu.au/idp/profile/SAML2/Redirect/SSO
+    service: SingleSignOnService
+  - binding: urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect
+    location: https://signon.deakin.edu.au/idp/profile/SAML2/Redirect/SLO
+    service: SingleLogoutService
+  - binding: urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST
+    location: https://signon.deakin.edu.au/idp/profile/SAML2/POST/SLO
+    service: SingleLogoutService
+
+federated_deployment:
+  entityID: https://signon.deakin.edu.au/idp/shibboleth
+  x-operator: tenant
+  operator_basis: >-
+    The AAF-registered metadata for this entityID points SSO at aaf.deakin.edu.au, which CNAMEs to
+    ec9a7f24c761e9b79a6c8c40560c805e.idp-cname.aaf.edu.au -> 13.35.93.40 / .73 / .90 / .102, whois
+    OrgName "Amazon Technologies Inc." (AT-88-Z), on a certificate issued by "C=US, O=Amazon,
+    CN=Amazon RSA 2048 M01" to CN=aaf.deakin.edu.au. The idp-cname.aaf.edu.au shape is AAF's Rapid
+    IdP fully-managed service; the infrastructure and the metadata-serving endpoint are AAF's.
+  managed_platform:
+    name: AAF Rapid IdP
+    operator: Australian Access Federation
+    url: https://aaf.edu.au/subscribers/rapididp/
+    cname_target: ec9a7f24c761e9b79a6c8c40560c805e.idp-cname.aaf.edu.au
+    resolved_ip_owner: Amazon Technologies Inc. (AT-88-Z)
+  metadata_url: https://aaf.deakin.edu.au/idp/shibboleth
+  metadata_status: 200
+  metadata_bytes: 4442
+  registration_instant: '2025-11-09T11:51:24Z'
+  endpoints:
+  - https://aaf.deakin.edu.au/idp/profile/SAML2/POST/SSO
+  - https://aaf.deakin.edu.au/idp/profile/SAML2/Redirect/SSO
+  entity_categories:
+  - http://refeds.org/category/research-and-scholarship
+  - http://refeds.org/category/anonymous
+  - https://refeds.org/category/pseudonymous
+  - https://refeds.org/category/personalized
+  - http://www.geant.net/uri/dataprotection-code-of-conduct/v1
+  - https://refeds.org/category/code-of-conduct/v2
+  assurance_certification:
+  - https://refeds.org/sirtfi
+  requested_attributes_sample:
+  - eduPersonPrincipalName (urn:oid:1.3.6.1.4.1.5923.1.1.1.6)
+  - eduPersonScopedAffiliation (urn:oid:1.3.6.1.4.1.5923.1.1.1.9)
+  - eduPersonTargetedID (urn:oid:1.3.6.1.4.1.5923.1.1.1.10)
+  - auEduPersonSharedToken (urn:oid:1.3.6.1.4.1.27856.1.2.5)
+  - displayName (urn:oid:2.16.840.1.113730.3.1.241)
+
+service_providers:
+  note: >-
+    Every EntityDescriptor in the AAF production aggregate whose entityID contains "deakin",
+    excluding the IdP above. Operator is settled per host. Test and development entities are
+    listed but marked non-production and are NOT recorded as surfaces in apis.yml.
+  entities:
+  - entityID: https://dataportal.deakin.edu.au/shibboleth
+    display_name: Deakin Data Portal
+    organization: Deakin University
+    x-operator: institution
+    operator_basis: >-
+      dataportal.deakin.edu.au CNAME aafapp-p7-web-2020013100-prod.aa-global.deakin.edu.au ->
+      128.184.233.107 / .235.107 / .237.107 / .239.107, inside DEAKINUNIVERSITY (APNIC).
+    production: true
+  - entityID: https://aceddenvirocare.deakin.edu.au/shibboleth
+    display_name: Envirocare
+    organization: Deakin University
+    x-operator: institution
+    production: true
+  - entityID: https://ot-simulation.deakin.edu.au/shibboleth
+    display_name: Occupational Therapy Simulations
+    organization: Deakin University
+    x-operator: institution
+    production: true
+  - entityID: https://deakin.wams-edu.com/shibboleth
+    display_name: Deakin - Academic Workload Management System (WAMS)
+    organization: ACADEM
+    x-operator: vendor
+    operator_basis: Host is the WAMS vendor's own domain (wams-edu.com), not a Deakin domain.
+    production: true
+  - entityID: https://deakin.wamsedu.com.au/simplesaml/module.php/saml/sp/metadata.php/default-sp
+    display_name: WAMS Deakin AWS
+    organization: ACADEM
+    x-operator: vendor
+    operator_basis: Vendor domain wamsedu.com.au; SimpleSAMLphp SP operated by the WAMS vendor.
+    production: true
+  - entityID: https://test-dataportal.deakin.edu.au/shibboleth
+    display_name: Deakin Test Data Portal
+    organization: Deakin University
+    x-operator: institution
+    production: false
+    note: Non-production test entity — not recorded as a surface.
+  - entityID: https://ot-simulation-dev.deakin.edu.au/
+    display_name: Occupational Therapy Simulations DEV
+    organization: Deakin University
+    x-operator: institution
+    production: false
+    note: Non-production development entity — not recorded as a surface.

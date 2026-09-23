@@ -4,7 +4,7 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Deakin University
 providerId: deakin
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-30'
 reconciled: false
 tags:
 - Education
@@ -12,10 +12,13 @@ tags:
 - University
 - Rate Limiting
 description: >-
-  Deakin University does not publish a unified public rate-limit table across its APIs. Open
-  metadata and harvesting endpoints (OAI-PMH, IIIF, library) may throttle large-scale
-  or automated harvesting; clients should harvest politely, honor Retry-After, and
-  contact the relevant service for bulk access.
+  Deakin University publishes no rate-limit table, because it publishes no API product. Corrected
+  2026-08-30: an earlier version of this file described throttling on "OAI-PMH, IIIF, library"
+  endpoints Deakin does not operate. What exists in practice is the opposite of a documented limit —
+  the deakin.edu.au web estate (www, blogs, dataportal, handbook, research) sits behind F5/Shape bot
+  protection that answers automated clients with a JavaScript challenge or HTTP 403 rather than a
+  429, and dro.deakin.edu.au returns HTTP 202 with an empty body. The SAML metadata endpoint at
+  signon.deakin.edu.au/idp/shibboleth answered every probe without throttling.
 notes: Confirm per-service limits with each API's documentation; harvest responsibly.
 sources:
 - https://raw.githubusercontent.com/api-evangelist/deakin/refs/heads/main/apis.yml
@@ -26,7 +29,9 @@ limits:
   scope: client
   metric: requests-per-minute
   limit: see service documentation
-  notes: No published global limit; large harvests may be rate-limited.
+  notes: >-
+    No published limit anywhere. Automated access is shaped by bot protection, not by a rate-limit
+    policy — expect a challenge body or a 403 rather than a 429.
 policies:
 - name: Backoff Strategy
   description: Exponential backoff with jitter; honor Retry-After; harvest during off-peak hours.

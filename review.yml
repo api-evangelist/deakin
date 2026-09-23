@@ -3,8 +3,89 @@ name: Deakin University
 description: Deakin University public developer/API footprint review for APIs.json cataloging.
 url: https://raw.githubusercontent.com/api-evangelist/deakin/refs/heads/main/review.yml
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-30'
 reviews:
+  - date: '2026-08-30'
+    rating: 2
+    summary: >-
+      Re-profiled under the API Evangelist university pipeline, which settles WHO OPERATES each
+      surface before saving anything. The June 2026 profile credited Deakin with eleven APIs; every
+      one was a tag-split of a single figshare contract (info.title "Figshare altmetric ... API",
+      info.contact "Figshare Support", servers https://api.figshare.com/v2) that eleven other
+      institutions in this cohort ship as well. Those ten OpenAPIs, their pristine source, and the
+      43 artifacts derived from them — collections, JSON Schema, JSON Structure, examples, JSON-LD,
+      vocabulary, rulesets, authentication, scopes, agentic-access and the capability map — were
+      removed file by file. What replaced them is smaller and actually Deakin's: a self-served SAML
+      2.0 EntityDescriptor for a Shibboleth IdP Deakin runs on its own APNIC address space, and the
+      federation, DataCite and Crossref registrations that go with it. Operator was decided by IP
+      ownership, whois and certificate procurement, never by hostname. Expect the Kin Score to fall.
+    endpoints:
+      - url: https://signon.deakin.edu.au/idp/shibboleth
+        status: 200
+        note: >-
+          SAML 2.0 EntityDescriptor, application/xml, 4,826 bytes. Resolves into 128.184.0.0/16
+          (APNIC netname DEAKINUNIVERSITY) on a DigiCert certificate issued to O=Deakin University.
+          Institution-operated; archived at identity-federation/deakin-idp-saml-metadata.xml.
+      - url: https://aaf.deakin.edu.au/idp/shibboleth
+        status: 200
+        note: >-
+          Same entityID, 4,442 bytes, but the host CNAMEs to idp-cname.aaf.edu.au on Amazon
+          (AT-88-Z) with an Amazon-issued certificate — AAF's managed Rapid IdP. Tenant.
+      - url: https://md.aaf.edu.au/aaf-metadata.xml
+        status: 200
+        note: >-
+          AAF production aggregate, 3,178,473 bytes, 360 entities. Eight carry "deakin": the IdP,
+          three production Deakin-hosted SPs, two test/dev entities, and two SPs on the WAMS
+          vendor's own domains.
+      - url: https://dataportal.deakin.edu.au/
+        status: 200
+        note: >-
+          Institution-operated by IP (128.184.237.107), registered in AAF as a Shibboleth SP, but
+          every path returns an F5/Shape JavaScript challenge body — /api, /mint/ and /redbox/
+          included. Live host, unreadable contract.
+      - url: https://d2l.deakin.edu.au/d2l/api/versions/
+        status: 200
+        note: >-
+          D2L Valence version manifest, application/json, 2,400 bytes, fifteen product codes
+          including lti. The only JSON API answering on any deakin.edu.au host. CNAME to
+          deakin.brightspace.com — D2L's contract, Deakin's tenant.
+      - url: https://dro.deakin.edu.au/
+        status: 202
+        note: CNAME proxy-eu-01.figshare.com; zero-byte bot challenge. figshare tenant.
+      - url: https://api.datacite.org/clients/ardcx.deakin
+        status: 200
+        note: >-
+          Deakin's own DataCite repository account under ARDC, created 2020-05-14, prefix 10.26187,
+          4,597 DOIs registered.
+      - url: https://api.crossref.org/members/8935
+        status: 200
+        note: Crossref member "Deakin University", prefix 10.21153, 1,303 deposited works.
+      - url: https://github.com/Deakin
+        status: 200
+        note: >-
+          Official org, 22 public repos including forks of ReDBox, Mint, The Fascinator and two
+          Shibboleth integrations — consistent with the Data Portal stack. No API contract.
+      - url: https://blogs.deakin.edu.au/wp-json/
+        status: 200
+        note: >-
+          WordPress on Deakin's own address space, but the REST route index returns the F5/Shape
+          challenge page rather than JSON. A 200 that is not a finding.
+      - url: https://library.deakin.edu.au/
+        status: 0
+        note: >-
+          Resolves to 216.147.221.162, whois Ex Libris (USA) Inc. (EXLIBRIS-20-1). Connection timed
+          out after 30s from this vantage point; nothing claimed about its interface.
+      - url: https://www.deakin.edu.au/
+        status: 403
+        note: >-
+          Squiz-hosted main site behind bot protection; 403 to every automated fetch including
+          /robots.txt, /llms.txt, /sitemap.xml and /.well-known/security.txt. Live, not dead.
+      - url: https://api.deakin.edu.au/
+        status: 404
+        note: No API host. Probed to close out the obvious guess.
+      - url: https://vmdp.deakin.edu.au/
+        status: 0
+        note: Victorian Marine Data Portal still does not resolve. Not recorded as a surface.
   - date: '2026-06-03'
     rating: 2
     summary: >-

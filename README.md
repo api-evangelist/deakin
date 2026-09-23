@@ -64,14 +64,14 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Deakin University is a public research university in Victoria, Australia (Geelong, Warrnambool and Melbourne), ranked #197 in the QS World University Rankings 2025. This repository catalogs Deakin's publicly observable developer and API footprint as an [APIs.json](https://apisjson.org) profile. Deakin does not publish a self-service developer API portal; its confirmed machine-readable surface is research-centric (the figshare-hosted DRO repository with OAI-PMH/REST, a public research Data Portal) plus a Shibboleth/SAML2 SSO identity provider and an active GitHub organization.
+Deakin University is a public research university in Victoria, Australia (Geelong, Warrnambool and Melbourne). This repository catalogs Deakin's publicly observable programmable footprint as an [APIs.json](https://apisjson.org) profile, with an explicit operator recorded on every surface. Deakin publishes no developer portal and no OpenAPI. Its one institution-operated machine-readable contract is the SAML 2.0 metadata it serves for a Shibboleth identity provider it runs on its own APNIC address space; everything else that is callable under a Deakin name belongs to a platform Deakin buys.
 
 - APIs.json: https://raw.githubusercontent.com/api-evangelist/deakin/refs/heads/main/apis.yml
 - Run it with Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=deakin-api-evangelist&utm_content=repo
 
 ## Type
 
-- Index / Consumer / 3rd-Party
+- Index / Consumer / 3rd-Party — `x-type: university`, `x-category: Public Research University`
 
 ## Tags
 
@@ -79,15 +79,40 @@ Deakin University is a public research university in Victoria, Australia (Geelon
 - Higher Education
 - University
 - Research
-- Open Data
 - Australia
+- Victoria
+- Identity Federation
+- Research Repository
+- Research Data
+- Learning Management
 
-## APIs
+## Surfaces, by operator
 
-- **Deakin Research Online (DRO) OAI-PMH** — research repository hosted on figshare, metadata harvestable via OAI-PMH. Docs: https://info.figshare.com/user-guide/how-to-use-figshares-oai-pmh-service/ — Repository: https://dro.deakin.edu.au/
-- **figshare REST API (DRO platform)** — third-party REST API (v2) powering DRO. Docs: https://docs.figshare.com/
-- **Deakin Data Portal** — public research data-sharing portal (web-delivered, no documented API confirmed): https://dataportal.deakin.edu.au/
-- **Deakin Single Sign-On** — Shibboleth/SAML2 identity provider for federated SSO: https://signon.deakin.edu.au/
+A university is a federation of buyers, not a producer. Each entry below carries an `x-operator` in
+`apis.yml` saying who runs the thing it describes.
+
+**Institution-operated**
+
+- **Deakin University SAML 2.0 Identity Provider** — self-served EntityDescriptor at https://signon.deakin.edu.au/idp/shibboleth (HTTP 200, application/xml, 4,826 bytes), on 128.184.0.0/16 (APNIC netname DEAKINUNIVERSITY) under a Deakin-procured DigiCert certificate. Archived at [identity-federation/deakin-idp-saml-metadata.xml](identity-federation/deakin-idp-saml-metadata.xml).
+- **Deakin Data Portal** — https://dataportal.deakin.edu.au/, on Deakin's own address space and registered in the AAF as a Shibboleth SP, but every path returns an F5/Shape JavaScript challenge, so no contract could be read from it.
+
+**Tenant — Deakin's data, someone else's contract**
+
+- **Deakin Research Online (DRO)** — figshare (dro.deakin.edu.au → proxy-eu-01.figshare.com).
+- **CloudDeakin** — D2L Brightspace (d2l.deakin.edu.au → deakin.brightspace.com); its keyless Valence version manifest is the only JSON API answering on any deakin.edu.au host.
+- **Federated SSO** — AAF Rapid IdP (aaf.deakin.edu.au → idp-cname.aaf.edu.au on Amazon).
+- **Library discovery** — Ex Libris (library.deakin.edu.au → EXLIBRIS-20-1).
+- **DataCite repository ARDCX.DEAKIN** — prefix 10.26187, 4,597 DOIs.
+- **Crossref member 8935** — prefix 10.21153, 1,303 works.
+
+## Identity Federation
+
+- [identity-federation/deakin-identity-federation.yml](identity-federation/deakin-identity-federation.yml)
+- [identity-federation/deakin-idp-saml-metadata.xml](identity-federation/deakin-idp-saml-metadata.xml)
+
+## Conformance (Kin Score `education` regime)
+
+- [conformance/deakin-conformance.yml](conformance/deakin-conformance.yml) — conformant on `saml`, `shibboleth`, `datacite` and `crossref`; `lti` and `oai-pmh` are present only through tenant and vendor platforms and are not credited to Deakin.
 
 ## Plans
 
@@ -104,19 +129,40 @@ Deakin University is a public research university in Victoria, Australia (Geelon
 ## Timestamps
 
 - Created: 2026-06-03
-- Modified: 2026-06-03
+- Modified: 2026-08-30
 
 ## Common Properties
 
 - Website: https://www.deakin.edu.au/
+- Open Data: https://dataportal.deakin.edu.au/
+- Research Repository: https://dro.deakin.edu.au/
+- Library: https://www.deakin.edu.au/library
+- Course Catalog: https://www.deakin.edu.au/study/find-a-course
+- AI Policy: https://www.deakin.edu.au/about-deakin/why-deakin/generative-artificial-intelligence
+- AI Tooling: https://www.deakin.edu.au/students/study-support/study-resources/artificial-intelligence
 - GitHub: https://github.com/Deakin
 - LinkedIn: https://au.linkedin.com/school/deakin-university/
-- Authentication (SSO): https://signon.deakin.edu.au/
-- Plans, Rate Limits, FinOps, and Review pointers (see files above)
+- Blog: https://blogs.deakin.edu.au/
+- Identity Federation, Conformance, Domain Security, Plans, Rate Limits, FinOps and Review pointers (see files above)
 
 ## Notes
 
-Verification caveats: no first-party documented developer API or public API portal was found for Deakin. The DRO repository host returns a bot-challenge (HTTP 202) to automated clients and is hosted on figshare, whose OAI-PMH and REST APIs are the actual machine-readable surface. The main website (www.deakin.edu.au) returns HTTP 403 to automated fetches due to bot protection but resolves in a browser. The Victorian Marine Data Portal (vmdp.deakin.edu.au) did not resolve during probing. SSO is federated identity infrastructure, not a documented public OAuth/OpenID developer API. No endpoints were fabricated; all entries reflect URLs probed on 2026-06-03.
+**This profile was corrected on 2026-08-30.** The June 2026 version credited Deakin with eleven APIs.
+Every one of them was a tag-split of a single figshare contract — `info.title` "Figshare altmetric …
+API", `info.contact` "Figshare Support", `servers` `https://api.figshare.com/v2` — and eleven other
+institutions in this cohort ship the same document. Ten OpenAPIs, the pristine source spec, and the
+43 artifacts derived from them (collections, JSON Schema, JSON Structure, examples, JSON-LD,
+vocabulary, rulesets, authentication, scopes, agentic-access, capability map) were removed file by
+file. The figshare relationship is kept, as a tenant surface, because it is a real institutional
+fact — but the contract is figshare's and belongs in figshare's profile.
+
+Verification caveats: operator was settled by DNS, whois and TLS certificate procurement, never by
+hostname. The deakin.edu.au web estate (www, blogs, dataportal, handbook, research) sits behind
+F5/Shape bot protection which answers automated clients with HTTP 403 or a 200 carrying a JavaScript
+challenge body — including `blogs.deakin.edu.au/wp-json/`, so no WordPress REST surface is claimed.
+`library.deakin.edu.au` timed out from our vantage point. `vmdp.deakin.edu.au` still does not
+resolve. `api.deakin.edu.au` returns 404. No endpoints were fabricated; every entry reflects a URL
+probed on 2026-08-30 and recorded with its status code in [review.yml](review.yml).
 
 ## Maintainers
 

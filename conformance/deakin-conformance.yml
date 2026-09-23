@@ -1,0 +1,253 @@
+specification: API Evangelist Domain Standard Conformance
+specificationVersion: '0.1'
+provider: Deakin University
+providerId: deakin
+regime: education
+generated: '2026-08-30'
+method: probed
+source: >-
+  The SAML 2.0 EntityDescriptor Deakin serves at https://signon.deakin.edu.au/idp/shibboleth
+  (HTTP 200, application/xml, 4,826 bytes), archived at
+  identity-federation/deakin-idp-saml-metadata.xml; the Australian Access Federation production
+  aggregate https://md.aaf.edu.au/aaf-metadata.xml (HTTP 200, 3,178,473 bytes) parsed for every
+  Deakin entity; the DataCite REST API https://api.datacite.org (clients, prefixes, dois); the
+  Crossref REST API https://api.crossref.org (members, works); the D2L Brightspace tenant version
+  endpoint https://d2l.deakin.edu.au/d2l/api/versions/ (HTTP 200, application/json, 2,400 bytes);
+  https://api.figshare.com/v2/oai?verb=Identify (HTTP 200, text/xml, 827 bytes); and DNS, TLS and
+  whois resolution of every host, to settle who operates the thing each contract describes.
+description: >-
+  Conformance against the Kin Score `education` regulatory regime standards list
+  (scim, lti, oneroster, ed-fi, caliper, qti, oai-pmh, shibboleth, saml, orcid, datacite,
+  crossref). Reward-only: a standard is recorded as conformant for Deakin only where the evidence
+  is Deakin's own. Standards reached only through a platform Deakin buys — figshare, D2L
+  Brightspace, Ex Libris, AAF's managed IdP — are listed separately as tenant- or vendor-operated,
+  because that conformance belongs to the platform's engineering, not to Deakin's.
+
+  Operator was settled by IP ownership and certificate procurement, not by hostname. That check is
+  what makes the SAML/Shibboleth result creditable: signon.deakin.edu.au resolves into
+  128.184.0.0/16 (APNIC netname DEAKINUNIVERSITY) on a Deakin-procured DigiCert certificate, so the
+  metadata it serves is Deakin describing Deakin's own service. See
+  identity-federation/deakin-identity-federation.yml for the full operator analysis, including the
+  in-flight migration to AAF's managed Rapid IdP.
+
+conforms:
+- standard: saml
+  name: SAML 2.0
+  status: conformant
+  x-operator: institution
+  confidence: high
+  evidence:
+    url: https://signon.deakin.edu.au/idp/shibboleth
+    status: 200
+    content_type: application/xml;charset=utf-8
+    bytes: 4826
+    entity: https://signon.deakin.edu.au/idp/shibboleth
+    locations:
+    - 'EntityDescriptor[@entityID="https://signon.deakin.edu.au/idp/shibboleth"]'
+    - 'IDPSSODescriptor[@protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"]'
+    - 'IDPSSODescriptor/SingleSignOnService[@Location="https://signon.deakin.edu.au/idp/profile/SAML2/POST/SSO"]'
+    - 'IDPSSODescriptor/SingleSignOnService[@Location="https://signon.deakin.edu.au/idp/profile/SAML2/Redirect/SSO"]'
+    - 'IDPSSODescriptor/SingleLogoutService[@Location="https://signon.deakin.edu.au/idp/profile/SAML2/Redirect/SLO"]'
+    - 'IDPSSODescriptor/KeyDescriptor[@use="signing"] and [@use="encryption"]'
+    corroboration:
+      resolved_ip: 128.184.239.111 (and .233 / .235 / .237 .111)
+      ip_owner: DEAKINUNIVERSITY / Deakin University (APNIC, 128.184.0.0/16)
+      tls_issuer: C=US, O=DigiCert Inc, CN=DigiCert Global G2 TLS RSA SHA256 2020 CA1
+      tls_subject: C=AU, ST=Victoria, L=Geelong, O=Deakin University, CN=*.deakin.edu.au
+      federation_entities: >-
+        Three further production SAML 2.0 service providers under Deakin's own domain are
+        registered in the AAF aggregate — dataportal.deakin.edu.au/shibboleth (Deakin Data
+        Portal), aceddenvirocare.deakin.edu.au/shibboleth (Envirocare) and
+        ot-simulation.deakin.edu.au/shibboleth — each on 128.184.0.0/16.
+  note: >-
+    Deakin publishes a complete, self-served SAML 2.0 EntityDescriptor for an identity provider it
+    runs on its own address space, and registers it plus three production service providers in a
+    national federation. This is the only institution-operated machine-readable contract found in
+    the whole profile.
+
+- standard: shibboleth
+  name: Shibboleth
+  status: conformant
+  x-operator: institution
+  confidence: high
+  evidence:
+    url: https://signon.deakin.edu.au/idp/shibboleth
+    status: 200
+    locations:
+    - 'EntityDescriptor/@xmlns:shibmd = "urn:mace:shibboleth:metadata:1.0"'
+    - 'IDPSSODescriptor/Extensions/shibmd:Scope[@regexp="false"] = deakin.edu.au'
+    - 'metadata served at the Shibboleth IdP path /idp/shibboleth; SSO/SLO under /idp/profile/SAML2/'
+    corroboration:
+      dns: signon.deakin.edu.au CNAME shib-idp5-shib-2024061000-prod.aa-global.deakin.edu.au
+      note: >-
+        The hostname series itself names the software and the deployment generation
+        (shib-idp5 ... 2024061000-prod), on Deakin-owned address space.
+  note: >-
+    Shibboleth IdP, self-hosted, with a declared scope of deakin.edu.au. The AAF-registered copy of
+    the same entityID additionally carries REFEDS Research & Scholarship, the GEANT Data Protection
+    Code of Conduct v1, REFEDS Code of Conduct v2 and REFEDS Sirtfi assurance — but those endpoints
+    resolve to AAF's managed platform, so they are recorded under tenant_operated below.
+
+- standard: datacite
+  name: DataCite
+  status: conformant
+  x-operator: institution
+  confidence: moderate
+  evidence:
+    url: https://api.datacite.org/clients/ardcx.deakin
+    status: 200
+    locations:
+    - 'client id ardcx.deakin, symbol ARDCX.DEAKIN, name "Deakin University", clientType repository, created 2020-05-14'
+    - 'DOI prefix 10.26187 (api.datacite.org/prefixes?query=10.26187 -> 1 result)'
+    - 'https://api.datacite.org/dois?client-id=ardcx.deakin -> 4,597 DOIs'
+    - 'https://api.datacite.org/dois?query=publisher:"Deakin University" -> 4,596 DOIs, e.g. 10.26187/deakin.33365271'
+  note: >-
+    Deakin is the registrant: it holds its own DataCite repository account under the ARDC
+    (Australian Research Data Commons) consortium and its own DOI prefix, and 4,597 records carry
+    Deakin as publisher with DataCite-schema metadata. Confidence is moderate rather than high
+    because the API is DataCite's and the minting path is Deakin's figshare tenant — the DOI
+    suffixes (deakin.33365271) are figshare item ids. The registration and the metadata are
+    Deakin's; the contract that serves them is not.
+
+- standard: crossref
+  name: Crossref
+  status: conformant
+  x-operator: institution
+  confidence: moderate
+  evidence:
+    url: https://api.crossref.org/members/8935
+    status: 200
+    locations:
+    - 'member 8935, primary-name "Deakin University", prefix 10.21153'
+    - 'https://api.crossref.org/members/8935/works -> 1,303 deposited works, e.g. 10.21153/pecl2003vol13no3art1285'
+  note: >-
+    Deakin is a Crossref member depositing its own DOIs under prefix 10.21153, largely journal
+    articles from its scholarly publishing. Same posture as datacite: the deposits are Deakin's,
+    the API is Crossref's.
+
+- standard: oai-pmh
+  name: OAI-PMH
+  status: not-conformant
+  x-operator: null
+  confidence: high
+  evidence:
+    note: >-
+      No institution-hosted OAI-PMH endpoint could be confirmed. dro.deakin.edu.au returns HTTP 202
+      with a zero-byte body to every automated client (figshare's bot challenge), and
+      dataportal.deakin.edu.au returns an F5/Shape JavaScript challenge page on every path. The
+      only reachable OAI-PMH is figshare's own generic service — see vendor_operated below.
+
+- standard: lti
+  name: 1EdTech Learning Tools Interoperability
+  status: not-conformant
+  x-operator: null
+  confidence: moderate
+  evidence:
+    note: >-
+      LTI is present only inside Deakin's D2L Brightspace tenant — see tenant_operated below. No
+      Deakin-authored LTI tool registration or platform contract is published.
+
+- standard: scim
+  name: SCIM
+  status: not-conformant
+  confidence: moderate
+  evidence:
+    note: >-
+      No /scim/v2 or SCIM ServiceProviderConfig found on any reachable Deakin host. Deakin's
+      account provisioning is not publicly described.
+
+- standard: oneroster
+  name: 1EdTech OneRoster
+  status: not-conformant
+  confidence: moderate
+  evidence:
+    note: No OneRoster endpoint or claim found on any reachable Deakin host.
+
+- standard: ed-fi
+  name: Ed-Fi
+  status: not-conformant
+  confidence: high
+  evidence:
+    note: Ed-Fi is a US K-12 data standard; no relevance or trace for an Australian university.
+
+- standard: caliper
+  name: 1EdTech Caliper Analytics
+  status: not-conformant
+  confidence: moderate
+  evidence:
+    note: No Caliper sensor, event store or claim found on any reachable Deakin host.
+
+- standard: qti
+  name: 1EdTech QTI
+  status: not-conformant
+  confidence: moderate
+  evidence:
+    note: >-
+      No QTI item bank or export contract published. Any QTI support would sit inside the
+      Brightspace tenant, not in a Deakin-authored contract.
+
+- standard: orcid
+  name: ORCID
+  status: not-conformant
+  x-operator: null
+  confidence: moderate
+  evidence:
+    note: >-
+      ORCID appears only as a field in figshare's own vendor OpenAPI — the contract removed from
+      this repository on 2026-08-30 — and in DataCite creator records. No Deakin-published ORCID
+      integration contract or member API was found. Not credited.
+
+tenant_operated:
+  note: >-
+    Real standards conformance reachable under a Deakin hostname or a Deakin account, where the
+    engineering belongs to the platform. Recorded so the relationship is not lost, and NOT counted
+    toward Deakin's conformance.
+  entries:
+  - standard: lti
+    platform: D2L Brightspace (CloudDeakin)
+    host: d2l.deakin.edu.au
+    x-operator: tenant
+    evidence:
+      url: https://d2l.deakin.edu.au/d2l/api/versions/
+      status: 200
+      content_type: application/json
+      bytes: 2400
+      locations:
+      - 'ProductCode "lti" present in the Valence version manifest, alongside bas, bfp, campusLife, customization, ep, ext, le, link, lp, LR, rp'
+      - 'https://d2l.deakin.edu.au/d2l/lti -> 302'
+      dns: d2l.deakin.edu.au CNAME deakin.brightspace.com -> 3.105.84.153 / 15.134.178.12 (AWS ap-southeast-2)
+    note: >-
+      Deakin's Brightspace tenant answers the keyless D2L Valence version manifest, which is the
+      only JSON API contract reachable on any deakin.edu.au hostname. The contract is D2L's.
+  - standard: saml
+    platform: AAF Rapid IdP
+    host: aaf.deakin.edu.au
+    x-operator: tenant
+    evidence:
+      url: https://aaf.deakin.edu.au/idp/shibboleth
+      status: 200
+      bytes: 4442
+      dns: aaf.deakin.edu.au CNAME ec9a7f24c761e9b79a6c8c40560c805e.idp-cname.aaf.edu.au -> 13.35.93.0/24 (Amazon AT-88-Z)
+      tls_issuer: C=US, O=Amazon, CN=Amazon RSA 2048 M01
+    note: >-
+      The federated SSO endpoints registered for Deakin's entityID, plus the REFEDS R&S / Sirtfi /
+      CoCo entity categories, live on AAF's managed platform.
+
+vendor_operated:
+  note: >-
+    Standards reachable only on a generic vendor host every customer shares. Not Deakin's by any
+    reading; listed for completeness because the June 2026 profile credited them to Deakin.
+  entries:
+  - standard: oai-pmh
+    platform: figshare
+    host: api.figshare.com
+    x-operator: vendor
+    evidence:
+      url: https://api.figshare.com/v2/oai?verb=Identify
+      status: 200
+      content_type: text/xml
+      bytes: 827
+    note: >-
+      Generic figshare OAI-PMH. Deakin Research Online is a figshare tenant (dro.deakin.edu.au
+      CNAME proxy-eu-01.figshare.com), so its records are harvestable through it, but the endpoint,
+      the identity it returns and the contract are figshare's.

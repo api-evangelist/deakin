@@ -4,7 +4,7 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Deakin University
 providerId: deakin
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-30'
 reconciled: false
 tags:
 - Education
@@ -12,22 +12,27 @@ tags:
 - University
 - Plans
 description: >-
-  Deakin University is a non-commercial higher-education institution; its APIs are not sold
-  as a commercial product. Public APIs (library, repository, course, and open-metadata
-  interfaces) are offered free of charge, typically for non-commercial use. Most
-  administrative and identity APIs are not openly self-service and require institutional
-  affiliation, credentials, or federation membership rather than a paid plan.
+  Deakin University is a non-commercial higher-education institution and sells no API product.
+  Corrected 2026-08-30: an earlier version of this file described "public open APIs (metadata,
+  library, repository, course data)" that Deakin does not publish — those were figshare's, and the
+  figshare contract has been removed from this repository. The only institution-operated
+  machine-readable surface Deakin publishes is SAML 2.0 federation metadata at
+  signon.deakin.edu.au/idp/shibboleth, which is free and unauthenticated to fetch by design, and
+  whose actual use requires membership of the Australian Access Federation. Everything else that is
+  callable under a Deakin name belongs to a platform Deakin buys.
 notes: >-
-  No published per-seat or per-call commercial pricing. "Free / Open" reflects open
-  public endpoints; "Affiliation / Credentialed" reflects access gated by institutional
-  identity rather than payment.
+  No published per-seat or per-call commercial pricing, and no self-service signup of any kind.
+  "Free / Open" reflects the unauthenticated federation metadata document; "Affiliation /
+  Federation" reflects access gated by institutional identity or AAF membership rather than payment.
 sources:
 - https://raw.githubusercontent.com/api-evangelist/deakin/refs/heads/main/apis.yml
 plans:
 - id: deakin-free-open
   name: Free / Open
   type: free
-  description: Public open APIs (metadata, library, repository, course data) offered at no charge, generally for non-commercial use.
+  description: >-
+    Unauthenticated, free to fetch: the SAML 2.0 EntityDescriptor Deakin serves at
+    signon.deakin.edu.au/idp/shibboleth. No other institution-operated endpoint is openly readable.
   entries:
   - label: Open API Access
     name: open_api_access
@@ -40,9 +45,12 @@ plans:
     price: '0.00'
     userMultiplied: false
 - id: deakin-affiliation
-  name: Affiliation / Credentialed
+  name: Affiliation / Federation
   type: free
-  description: Administrative and identity APIs gated behind institutional SSO, client certificates, or federation membership rather than payment.
+  description: >-
+    Actual use of Deakin's identity provider, its learning and research platforms, and its library
+    resources is gated behind institutional SSO or Australian Access Federation membership rather
+    than payment.
   entries:
   - label: Credentialed Access
     name: credentialed_access
