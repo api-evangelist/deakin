@@ -62,6 +62,17 @@ tags:
 - Identity Federation
 - Research Repository
 - Research Data
+- LMS
+tags_raw:
+- Education
+- Higher Education
+- University
+- Research
+- Australia
+- Victoria
+- Identity Federation
+- Research Repository
+- Research Data
 - Learning Management
 created: '2026-06-03'
 modified: '2026-08-30'
@@ -212,6 +223,10 @@ apis:
   baseURL: https://d2l.deakin.edu.au/d2l/api/
   x-operator: tenant
   tags:
+  - LMS
+  - LTI
+  - Brightspace
+  tags_raw:
   - Learning Management
   - LTI
   - Brightspace
